@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class HomeRecyclerAdapter(val mContext: Context, val mProductList: List<ProductData>) :
+class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val HEADER = 0
     val ITEM = 1
@@ -92,7 +92,7 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: List<ProductD
 
     inner class ItemViewHolder(val itemBinding: ItemHomeListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun itemBind(items:List<ProductData>){
+        fun itemBind(items:ArrayList<ProductData>){
             val horizonAdapter = HomeHorizontalAdapter(mContext, items)
             itemBinding.recyclerViewVertical.adapter = horizonAdapter
             itemBinding.recyclerViewVertical.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
@@ -126,15 +126,20 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: List<ProductD
         return mProductList.size + 1
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (position){
+            0 -> HEADER
+            else -> ITEM
+        }
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderViewHolder -> {
                 holder.headerBindPage()
             }
             is ItemViewHolder -> {
-                //holder.itemBind(mProductList[position])
-                //여기서 가로정렬 어뎁터 정의해줘야함
-
+                holder.itemBind(mProductList[position-1])
             }
         }
     }

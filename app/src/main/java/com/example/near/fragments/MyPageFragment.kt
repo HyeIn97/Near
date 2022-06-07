@@ -11,6 +11,7 @@ import com.example.near.ui.user.LoginActivity
 import com.example.near.R
 import com.example.near.ui.user.SignActivity
 import com.example.near.databinding.FragmentMyPageBinding
+import com.example.near.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,22 +32,43 @@ class MyPageFragment : BaseFragment(){
         super.onViewCreated(view, savedInstanceState)
         setupEvents()
         setValues()
+        memberCheck()
     }
     override fun setupEvents() {
-        var myIntent: Intent
-        binding.loginBtn.setOnClickListener {
-            myIntent = Intent(mContext, LoginActivity::class.java)
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(myIntent)
-        }
-        binding.signBtn.setOnClickListener {
-            myIntent = Intent(mContext, SignActivity::class.java)
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(myIntent)
-        }
+//        var myIntent: Intent
+//        binding.loginBtn.setOnClickListener {
+//            myIntent = Intent(mContext, LoginActivity::class.java)
+//            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            startActivity(myIntent)
+//        }
+//        binding.signBtn.setOnClickListener {
+//            myIntent = Intent(mContext, SignActivity::class.java)
+//            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            startActivity(myIntent)
+//        }
     }
 
     override fun setValues() {
 
+    }
+
+    fun memberCheck(){
+        if(ContextUtil.getLoginToken(mContext) == "" || !ContextUtil.getAutoLogin(mContext)){
+            binding.nonMemberLayout.visibility = View.VISIBLE
+            var myIntent: Intent
+            binding.loginBtn.setOnClickListener {
+                myIntent = Intent(mContext, LoginActivity::class.java)
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(myIntent)
+            }
+            binding.signBtn.setOnClickListener {
+                myIntent = Intent(mContext, SignActivity::class.java)
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(myIntent)
+            }
+        }else{
+            binding.memberLayout.visibility = View.VISIBLE
+
+        }
     }
 }

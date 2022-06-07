@@ -3,10 +3,7 @@ package com.example.near.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.near.fragments.CartFragment
-import com.example.near.fragments.CategoryFragment
-import com.example.near.fragments.HomeFragment
-import com.example.near.fragments.MyPageFragment
+import com.example.near.fragments.*
 
 class MainViewPagerAtapter(fm : FragmentActivity) : FragmentStateAdapter(fm) {
     override fun getItemCount(): Int {
@@ -18,7 +15,8 @@ class MainViewPagerAtapter(fm : FragmentActivity) : FragmentStateAdapter(fm) {
             0 -> HomeFragment()
             1 -> CategoryFragment()
             2 -> CartFragment()
-            else -> MyPageFragment()
+            3 -> MyPageFragment()
+            else -> SettingFragment()
         }
     }
 }

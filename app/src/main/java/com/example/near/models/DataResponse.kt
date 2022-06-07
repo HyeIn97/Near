@@ -2,11 +2,13 @@ package com.example.near.models
 
 import com.google.gson.JsonArray
 
-class DataResponse(
+data class DataResponse(
     val user : UserData,
     val token : String,
-    val product : ArrayList<ProductData>,
+    val products : JsonArray,
+    //val product : ArrayList<ProductData>,
     val banners : JsonArray,
     val reviews : JsonArray
+    //val reviews : ArrayList<ReviewData>
 ) {
 }

@@ -7,6 +7,7 @@
     android:padding="10dp">
     <ImageView
         android:id="@+id/productImg"
+        android:scaleType="fitXY"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:src="@mipmap/ic_launcher"/>

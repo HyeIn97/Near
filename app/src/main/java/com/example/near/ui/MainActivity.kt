@@ -1,19 +1,16 @@
 package com.example.near.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
 import com.example.near.databinding.ActivityMainBinding
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(){
     lateinit var binding : ActivityMainBinding
     lateinit var mPagerAdapter : MainViewPagerAtapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +33,7 @@ class MainActivity : BaseActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.bottomNav.menu.getItem(position).isChecked = true
+                var myIntent : Intent
                 when (position){
                     0 -> {
                         nearIcon.visibility = View.VISIBLE
@@ -75,7 +73,7 @@ class MainActivity : BaseActivity() {
                         backBtn.visibility = View.GONE
                         homeBtn.visibility = View.GONE
                         cartBtn.visibility = View.GONE
-                        settingBtn.visibility = View.GONE
+                        settingBtn.visibility = View.VISIBLE
                     }
                 }
             }

@@ -20,9 +20,9 @@ import retrofit2.Response
 class HomeFragment : BaseFragment() {
     lateinit var binding: FragmentHomeBinding
     lateinit var mHomeAdapter: HomeRecyclerAdapter
-    var mProductList = ArrayList<ProductData>()
+    var mPopProductList = ArrayList<ProductData>()
+    var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
-    var productList = ArrayList<ProductData>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment() {
     }
 
     fun initAdapter() {
-        mHomeAdapter = HomeRecyclerAdapter(mContext, productList)
+        mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList)
         mHomeAdapter.frag = this
         binding.homeRecyclerView.adapter = mHomeAdapter
         binding.homeRecyclerView.layoutManager = LinearLayoutManager(mContext)
@@ -59,8 +59,11 @@ class HomeFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     val br = response.body()!!
-                    mProductList.clear()
+                    mPopProductList.clear()
 
+//                    val reviewData = br.data.reviews
+//                    Log.d("reviewData", reviewData.toString())
+//                    val productData = reviewData
                     for (i in br.data.reviews) {
                         val jsonObj = JSONObject(i.toString())
                         val product = jsonObj.getJSONObject("product")
@@ -70,12 +73,11 @@ class HomeFragment : BaseFragment() {
                         val price = product.getInt("price")
                         val img = product.getString("image_url")
                         val popList = ProductData(id, name, price, img)
-                        if(mProductList.size <= 2){
-                            mProductList.add(popList)
+                        if(mPopProductList.size <= 2){
+                            mPopProductList.add(popList)
                         }
-                        Log.d("mTotalProductList", mProductList.toString())
                     }
-                            mTotalProductList.add(mProductList)
+                            mTotalProductList.add(mPopProductList)
                 }
                 suggestionList()
             }
@@ -90,8 +92,24 @@ class HomeFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
+                    val productData = br.data.products
+                    Log.d("productData", "${productData}")
+                    for(i in productData){
+                        val jsonObj = JSONObject(i.toString())
+                        val id = jsonObj.getInt("id")
+                        val name = jsonObj.getString("name")
+                        val price = jsonObj.getInt("price")
+                        val img = jsonObj.getString("image_url")
+                        val sugList = ProductData(id, name, price, img)
+                        if(mSugProductList.size <= 2){
+                            mSugProductList.add(sugList)
+                        }
+                        Log.d("mProductList", mSugProductList.toString())
+                    }
+                    mTotalProductList.add(mSugProductList)
+                    Log.d("mTotalProductList", mTotalProductList.toString())
+                    }
                 }
-            }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }
