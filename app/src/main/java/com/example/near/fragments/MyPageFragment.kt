@@ -2,6 +2,7 @@ package com.example.near.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,10 @@ import com.example.near.ui.user.LoginActivity
 import com.example.near.R
 import com.example.near.ui.user.SignActivity
 import com.example.near.databinding.FragmentMyPageBinding
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPageFragment : BaseFragment(){
     lateinit var binding : FragmentMyPageBinding

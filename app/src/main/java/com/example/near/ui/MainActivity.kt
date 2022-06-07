@@ -1,12 +1,17 @@
 package com.example.near.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
 import com.example.near.databinding.ActivityMainBinding
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : BaseActivity() {
     lateinit var binding : ActivityMainBinding

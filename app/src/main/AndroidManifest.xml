@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Near">
         <activity
+            android:name=".ui.product.ProductListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.FindPwActivity"
             android:exported="false" />
         <activity

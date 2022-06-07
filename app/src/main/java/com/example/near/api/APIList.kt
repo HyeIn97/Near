@@ -1,6 +1,7 @@
 package com.example.near.api
 
 import com.example.near.models.BasicResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -23,4 +24,15 @@ interface APIList {
     @FormUrlEncoded
     @POST("/user/find/password")
     fun postRequestFindPw(@Field("email")email:String, @Field("nick_name")nickName : String) : Call<BasicResponse>
+
+    //홈 배너 이미지
+    @GET("/main/banner")
+    fun getBannerImg() : Call<BasicResponse>
+    //홈 추천상품
+    @GET("/review/ranking")
+    fun getReviewRanking() : Call<BasicResponse>
+    //홈 모든상품
+    @GET("/product")
+    fun getAllProductList() : Call<BasicResponse>
+
 }
