@@ -2,7 +2,6 @@ package com.example.near.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView

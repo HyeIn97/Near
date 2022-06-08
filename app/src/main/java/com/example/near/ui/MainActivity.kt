@@ -1,8 +1,8 @@
 package com.example.near.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -11,15 +11,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
+import com.example.near.adapters.UserInfoActivity
 import com.example.near.databinding.ActivityMainBinding
-import com.example.near.databinding.DrawerSettingBinding
 import com.example.near.utils.ContextUtil
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
     lateinit var mPagerAdapter: MainViewPagerAtapter
-    lateinit var navBinding : DrawerSettingBinding
+//    lateinit var drawerBinding : DrawerLayout
+//    lateinit var drawerNavBinding : NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -28,12 +30,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         searchBtn.visibility = View.VISIBLE
         setUpEvents()
         setValues()
-
     }
 
     override fun setUpEvents() {
         settingBtn.setOnClickListener {
-            drawerSetting()
+            initdrawerSetting()
         }
     }
 
@@ -81,8 +82,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             settingBtn.visibility = View.GONE
                         } else {
                             settingBtn.visibility = View.VISIBLE
-                            navBinding = DrawerSettingBinding.inflate(LayoutInflater.from(mContext))
-
                         }
                         titleTxt.text = "마이페이지"
                         titleTxt.visibility = View.VISIBLE
@@ -107,40 +106,38 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    fun drawerSetting() {
-
-//        supportActionBar?.setDisplayShowTitleEnabled(true)
-//        supportActionBar?.setHomeAsUpIndicator(R.drawable.setting_icon2)
-//        supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        navBinding!!.drawerNavMenu.setNavigationItemSelectedListener(this)
+    fun initdrawerSetting() {
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.drawerNavMenu.setNavigationItemSelectedListener(this)
+        binding.drawerSettingLayout.openDrawer(GravityCompat.END)
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> {
-                navBinding!!.drawerSettingLayout.openDrawer(GravityCompat.START)
-                return true
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            var myIntent : Intent
+            when (item!!.itemId) {
+                R.id.userInfo -> {
+                    Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                    myIntent = Intent(mContext, UserInfoActivity::class.java)
+                    startActivity(myIntent)
+                }
+                R.id.easyPayment -> {
+                    Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                }
+                R.id.changePw -> {
+                    Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                }
+                R.id.logout -> {
+                    Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                }
             }
+            return false
         }
-        return super.onOptionsItemSelected(item)
-    }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
-            R.id.userInfo -> {
-                Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
-            }
-            R.id.easyPayment -> {
-                Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
-            }
-            R.id.changePw -> {
-                Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
-            }
-            R.id.logout -> {
-                Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
-            }
+    override fun onBackPressed() {
+        if(binding.drawerSettingLayout.isDrawerOpen(GravityCompat.END)){
+            binding.drawerSettingLayout.closeDrawers()
+        }else {
+            super.onBackPressed()
         }
-        return false
     }
-}
+    }

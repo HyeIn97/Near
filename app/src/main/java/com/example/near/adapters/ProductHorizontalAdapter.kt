@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.ProductData
 
-class HomeHorizontalAdapter(val mContext : Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<HomeHorizontalAdapter.ItemViewHolder>() {
+class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<ProductHorizontalAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val img = view.findViewById<ImageView>(R.id.productImg)

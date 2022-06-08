@@ -93,7 +93,7 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     inner class ItemViewHolder(val itemBinding: ItemHomeListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun itemBind(items:ArrayList<ProductData>){
-            val horizonAdapter = HomeHorizontalAdapter(mContext, items)
+            val horizonAdapter = ProductHorizontalAdapter(mContext, items)
             itemBinding.recyclerViewVertical.adapter = horizonAdapter
             itemBinding.recyclerViewVertical.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         }
