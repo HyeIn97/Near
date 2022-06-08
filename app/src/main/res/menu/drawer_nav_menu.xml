@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/userInfo"
+        android:title="회원정보"
+        android:icon="@drawable/right_icon"/>
+    <item
+        android:id="@+id/easyPayment"
+        android:title="간편 결제 관리"/>
+    <item
+        android:id="@+id/changePw"
+        android:title="비밀번호 변경"/>
+    <item
+        android:id="@+id/logout"
+        android:title="로그아웃"/>
+</menu>
+
+

@@ -15,8 +15,7 @@ class MainViewPagerAtapter(fm : FragmentActivity) : FragmentStateAdapter(fm) {
             0 -> HomeFragment()
             1 -> CategoryFragment()
             2 -> CartFragment()
-            3 -> MyPageFragment()
-            else -> SettingFragment()
+            else -> MyPageFragment()
         }
     }
 }

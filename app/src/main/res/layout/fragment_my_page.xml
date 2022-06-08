@@ -67,6 +67,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileImg"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginEnd="20dp"
@@ -151,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:text="마일리지"/>
                     <TextView
-                        android:id="@+id/mileageTxt"
+                        android:id="@+id/pointTxt"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:layout_width="match_parent"

@@ -46,6 +46,7 @@ class LoginActivity : BaseActivity() {
                         ContextUtil.setLoginToken(mContext, br.data.token)
                         ContextUtil.setAutoLogin(mContext, binding.autoLoginCB.isChecked)
                         GlobalData.loginUser = br.data.user
+                        Log.d("GlobalData.loginUser", GlobalData.loginUser.toString())
                         myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
                         finish()
@@ -59,7 +60,6 @@ class LoginActivity : BaseActivity() {
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                    Log.d("뭐야", "..?")
                 }
             })
         }

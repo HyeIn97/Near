@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.near.api.APIList
 import com.example.near.api.ServerAPI
+import com.example.near.ui.BaseActivity
 import retrofit2.Retrofit
 
 abstract class BaseFragment : Fragment(){

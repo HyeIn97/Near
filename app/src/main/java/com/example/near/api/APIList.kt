@@ -6,6 +6,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface APIList {
+    //회원정보 조회
+    @GET("/user")
+    fun getUserInfo() : Call<BasicResponse>
     //회원가입
     @FormUrlEncoded
     @PUT("/user")
@@ -24,6 +27,9 @@ interface APIList {
     @FormUrlEncoded
     @POST("/user/find/password")
     fun postRequestFindPw(@Field("email")email:String, @Field("nick_name")nickName : String) : Call<BasicResponse>
+    //마일리지 조회
+    @GET("/user/point")
+    fun getUserPoint() : Call<BasicResponse>
 
     //홈 배너 이미지
     @GET("/main/banner")

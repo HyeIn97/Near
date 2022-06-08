@@ -12,6 +12,7 @@ import com.example.near.adapters.HomeRecyclerAdapter
 import com.example.near.databinding.FragmentHomeBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.ProductData
+import com.example.near.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,7 +94,6 @@ class HomeFragment : BaseFragment() {
                 if(response.isSuccessful){
                     val br = response.body()!!
                     val productData = br.data.products
-                    Log.d("productData", "${productData}")
                     for(i in productData){
                         val jsonObj = JSONObject(i.toString())
                         val id = jsonObj.getInt("id")
@@ -104,10 +104,8 @@ class HomeFragment : BaseFragment() {
                         if(mSugProductList.size <= 2){
                             mSugProductList.add(sugList)
                         }
-                        Log.d("mProductList", mSugProductList.toString())
                     }
                     mTotalProductList.add(mSugProductList)
-                    Log.d("mTotalProductList", mTotalProductList.toString())
                     }
                 }
 
