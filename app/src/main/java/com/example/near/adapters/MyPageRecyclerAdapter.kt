@@ -10,11 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.near.databinding.FragmentMyPageBinding
 import com.example.near.models.ProductData
 
-class MyPageRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyPageRecyclerAdapter(val mContext: Context /*, val mProductList: ArrayList<ArrayList<ProductData>>*/) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val header = 1
     val item = 2
     lateinit var binding: FragmentMyPageBinding
     lateinit var frag: Fragment
+    private val mProductList: ArrayList<ArrayList<ProductData>> = arrayListOf()
+
+    fun addData(list: ArrayList<ArrayList<ProductData>>) {
+        println("my_fragment_list_ " + list)
+        this.mProductList.addAll(list)
+        println("my_fragment_productList_ " + mProductList)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holder = ItemViewHolder(FragmentMyPageBinding.inflate(LayoutInflater.from(mContext), parent, false))
@@ -28,17 +35,14 @@ class MyPageRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<A
     }
 
     override fun getItemCount(): Int {
-        return mProductList.size
-    }
-
-    inner class HeaderViewHolder(val itemBinding : FragmentMyPageBinding) : RecyclerView.ViewHolder(itemBinding.root){
-
+        Log.d("dd","getItemCount " + mProductList.size)
+        return mProductList.size - 1 //얘왜 3나오는지 물어보기
     }
 
     inner class ItemViewHolder(val itemBinding : FragmentMyPageBinding) : RecyclerView.ViewHolder(itemBinding.root){
         fun itemBind(items:ArrayList<ProductData>){
             val horizonAdapter = ProductHorizontalAdapter(mContext, items)
-            Log.d("dd","ddddd")
+            Log.d("dd","list " + items)
             itemBinding.myPageRecyclerView.adapter = horizonAdapter
             itemBinding.myPageRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         }

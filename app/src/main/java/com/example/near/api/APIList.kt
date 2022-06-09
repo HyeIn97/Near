@@ -30,6 +30,17 @@ interface APIList {
     //마일리지 조회
     @GET("/user/point")
     fun getUserPoint() : Call<BasicResponse>
+    //회원 정보 수정
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchUserInfo(@Field("field")fieId:String, @Field("value")value:String) : Call<BasicResponse>
+    //회원 프로필 이미지 등록
+    @FormUrlEncoded
+    @PUT("/user/image")
+    fun putUserImg(@Field("profile_image")profileImg:String) : Call<BasicResponse>
+    //회원 프로필 이미지 삭제
+    @DELETE("/user/image")
+    fun deleteUserImg() : Call<BasicResponse>
 
     //홈 배너 이미지
     @GET("/main/banner")

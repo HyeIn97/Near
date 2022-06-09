@@ -42,6 +42,11 @@
             app:itemIconSize="10dp"
             app:itemIconTint="@color/blue_55"
             app:itemIconPadding="25dp"/>
+<!--    이런식으로 프래그먼트 이동 + 스택 처리해줘야함-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fl_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
     </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

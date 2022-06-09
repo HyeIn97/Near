@@ -9,4 +9,6 @@ data class ProductData (
     @SerializedName("image_url")
     val img : String
         ) {
+
+
 }

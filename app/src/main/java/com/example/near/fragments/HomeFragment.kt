@@ -11,8 +11,8 @@ import com.example.near.R
 import com.example.near.adapters.HomeRecyclerAdapter
 import com.example.near.databinding.FragmentHomeBinding
 import com.example.near.models.BasicResponse
+import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
-import com.example.near.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +24,7 @@ class HomeFragment : BaseFragment() {
     var mPopProductList = ArrayList<ProductData>()
     var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,25 +61,28 @@ class HomeFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     val br = response.body()!!
+                    mTotalProductList.clear()
                     mPopProductList.clear()
-
-//                    val reviewData = br.data.reviews
-//                    Log.d("reviewData", reviewData.toString())
-//                    val productData = reviewData
+                    mSugProductList.clear()
                     for (i in br.data.reviews) {
                         val jsonObj = JSONObject(i.toString())
                         val product = jsonObj.getJSONObject("product")
-                        //Log.d("product", "${product}")
                         val id = product.getInt("id")
                         val name = product.getString("name")
                         val price = product.getInt("price")
                         val img = product.getString("image_url")
                         val popList = ProductData(id, name, price, img)
-                        if(mPopProductList.size <= 2){
+                        if (mPopProductList.size <= 2) {
                             mPopProductList.add(popList)
                         }
                     }
-                            mTotalProductList.add(mPopProductList)
+                    /*
+                        HomeListData().apply {
+                            homePopProduct.ProductList.addAll(mPopProductList)
+                            homePopProduct.type = "인기제품"
+//                        HomeData.setType = food
+                    }*/
+                    mTotalProductList.add(mPopProductList)
                 }
                 suggestionList()
             }
@@ -89,25 +93,30 @@ class HomeFragment : BaseFragment() {
     }
 
     fun suggestionList() {
-        apiList.getAllProductList().enqueue(object : Callback<BasicResponse>{
+        apiList.getAllProductList().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val br = response.body()!!
                     val productData = br.data.products
-                    for(i in productData){
+                    for(i in productData) {
                         val jsonObj = JSONObject(i.toString())
                         val id = jsonObj.getInt("id")
                         val name = jsonObj.getString("name")
                         val price = jsonObj.getInt("price")
                         val img = jsonObj.getString("image_url")
                         val sugList = ProductData(id, name, price, img)
-                        if(mSugProductList.size <= 2){
+                        if (mSugProductList.size <= 2) {
                             mSugProductList.add(sugList)
                         }
                     }
-                    mTotalProductList.add(mSugProductList)
-                    }
                 }
+                /*
+                HomeListData().apply {
+                    homeSugProductList.ProductList.addAll(mSugProductList)
+                    homeSugProductList.type = "신상품"
+                }*/
+                mTotalProductList.add(mSugProductList)
+            }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
             }

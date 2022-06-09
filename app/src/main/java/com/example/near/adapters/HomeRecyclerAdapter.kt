@@ -15,6 +15,7 @@ import com.example.near.api.ServerAPI
 import com.example.near.databinding.ItemHomeListBinding
 import com.example.near.databinding.ItemRecyclerviewHomeHeaderBinding
 import com.example.near.models.BasicResponse
+import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
 import org.json.JSONObject
 import retrofit2.Call
@@ -22,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>) :
+class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>) : /*ArrayList<ArrayList<ProductData>>*/
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val HEADER = 0
     val ITEM = 1
@@ -93,6 +94,7 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     inner class ItemViewHolder(val itemBinding: ItemHomeListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun itemBind(items:ArrayList<ProductData>){
+            Log.d("items",items.toString())
             val horizonAdapter = ProductHorizontalAdapter(mContext, items)
             itemBinding.recyclerViewVertical.adapter = horizonAdapter
             itemBinding.recyclerViewVertical.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
@@ -102,27 +104,16 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             HEADER -> {
-                HeaderViewHolder(
-                    ItemRecyclerviewHomeHeaderBinding.inflate(
-                        LayoutInflater.from(
-                            mContext
-                        ), parent, false
-                    )
-                )
+                HeaderViewHolder(ItemRecyclerviewHomeHeaderBinding.inflate(LayoutInflater.from(mContext), parent, false))
             }
             else -> {
-                ItemViewHolder(
-                    ItemHomeListBinding.inflate(
-                        LayoutInflater.from(
-                            mContext
-                        ), parent, false
-                    )
-                )
+                ItemViewHolder(ItemHomeListBinding.inflate(LayoutInflater.from(mContext), parent, false))
             }
         }
     }
 
     override fun getItemCount(): Int {
+        //val itemCount = mProductList.homePopProduct.mPopProductList.size + mProductList.mSugProductList.size + 1
         return mProductList.size + 1
     }
 

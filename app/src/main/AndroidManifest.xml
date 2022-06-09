@@ -10,10 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Near">
+        android:theme="@style/Theme.Near"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".adapters.UserInfoActivity"
+            android:name=".EasyPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.ModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.UserInfoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.product.ProductListActivity"

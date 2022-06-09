@@ -2,17 +2,20 @@ package com.example.near.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
-import com.example.near.adapters.UserInfoActivity
+import com.example.near.ui.user.UserInfoActivity
 import com.example.near.databinding.ActivityMainBinding
+import com.example.near.fragments.MyPageFragment
 import com.example.near.utils.ContextUtil
 import com.google.android.material.navigation.NavigationView
 
@@ -35,6 +38,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun setUpEvents() {
         settingBtn.setOnClickListener {
             initdrawerSetting()
+            //refreshFragment(this, ft)
         }
     }
 
@@ -107,11 +111,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun initdrawerSetting() {
+
+        //replaceFragment(CartFragment())
+
         supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.drawerNavMenu.setNavigationItemSelectedListener(this)
         binding.drawerSettingLayout.openDrawer(GravityCompat.END)
     }
+
+    //프레그먼트 변경 함수
+//    fun replaceFragment(fragment: Fragment) {
+//        val fragmentTransaction = supportFragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fl_container, fragment).commit();
+//    }
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
             var myIntent : Intent
             when (item!!.itemId) {
@@ -140,4 +153,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             super.onBackPressed()
         }
     }
+
+    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
+        var ft: FragmentTransaction = fragmentManager.beginTransaction()
+        ft.detach(fragment).attach(fragment).commit()
     }
+    /*
+    프래그먼트 - 프래그먼트 호출할때
+    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
+        var ft: FragmentTransaction = fragmentManager.beginTransaction()
+        ft.detach(fragment).attach(fragment).commit()
+    }*/
+}

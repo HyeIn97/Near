@@ -10,10 +10,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
+import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
 
 class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<ProductHorizontalAdapter.ItemViewHolder>() {
-
+    val POP = 0
+    val SUP = 1
     inner class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val img = view.findViewById<ImageView>(R.id.productImg)
         val name = view.findViewById<TextView>(R.id.nameTxt)
@@ -37,7 +39,8 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
     }
 
     override fun getItemCount(): Int {
-        return 3
+        //return mList.homePopProduct.ProductList.size
+        return mList.size
     }
 
 
