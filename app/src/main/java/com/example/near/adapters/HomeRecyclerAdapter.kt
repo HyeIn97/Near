@@ -31,8 +31,6 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     lateinit var apiList : APIList
     lateinit var retrofit : Retrofit
 
-
-
     inner class HeaderViewHolder(val headerBinding: ItemRecyclerviewHomeHeaderBinding) :
         RecyclerView.ViewHolder(headerBinding.root) {
         fun headerBindPage() {

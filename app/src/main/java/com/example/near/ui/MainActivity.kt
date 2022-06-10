@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
+import com.example.near.EasyPaymentActivity
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
 import com.example.near.ui.user.UserInfoActivity
@@ -135,12 +136,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
                 R.id.easyPayment -> {
                     Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                    myIntent = Intent(mContext, EasyPaymentActivity::class.java)
+                    startActivity(myIntent)
                 }
                 R.id.changePw -> {
                     Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout -> {
                     Toast.makeText(mContext, "되는거?", Toast.LENGTH_SHORT).show()
+                    ContextUtil.clear(mContext)
+                    myIntent = Intent(mContext, MainActivity::class.java)
+                    startActivity(myIntent)
+                    finish()
                 }
             }
             return false

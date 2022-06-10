@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EasyPaymentCardAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".EasyPaymentActivity"
             android:exported="false" />
         <activity

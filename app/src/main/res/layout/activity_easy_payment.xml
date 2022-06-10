@@ -7,9 +7,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".EasyPaymentActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/nonCardTxt"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="등록 된 카드가 없습니다."/>
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/easyPaymentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/cardAddBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카드 추가"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"/>
 </LinearLayout>
 </layout>

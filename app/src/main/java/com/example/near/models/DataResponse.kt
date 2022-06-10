@@ -12,6 +12,7 @@ data class DataResponse(
     val banners : JsonArray,
     val reviews: JsonArray,
     @SerializedName("point_logs")
-    val point : JsonArray
+    val point : JsonArray,
+    val cards : ArrayList<CardData>
 ) {
 }

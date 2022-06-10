@@ -41,6 +41,13 @@ interface APIList {
     //회원 프로필 이미지 삭제
     @DELETE("/user/image")
     fun deleteUserImg() : Call<BasicResponse>
+    //회원 카드 목록 조회
+    @GET("/user/card")
+    fun getUserCardList() : Call<BasicResponse>
+    //회원 카드 등록
+    @FormUrlEncoded
+    @POST("/user/card")
+    fun postUserCardAdd(@Field("card_num")cardNum : String, @Field("card_nickname")cardNick:String, @Field("mm_yy")cardPeriod: String, @Field("birthday")birth:String, @Field("password_2digit")pw:String) : Call<BasicResponse>
 
     //홈 배너 이미지
     @GET("/main/banner")
