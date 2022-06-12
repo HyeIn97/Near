@@ -163,6 +163,7 @@ class MyPageFragment : BaseFragment() {
 //                    }
                     mTotalProductList.add(mSugProductList)
                     myPageAdapter.addData(mTotalProductList)
+                    myPageAdapter.notifyDataSetChanged()
                 }
             }
 

@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SmallCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PassWordModifyActivity"
+            android:exported="false" />
+        <activity
             android:name=".EasyPaymentCardAddActivity"
             android:exported="false" />
         <activity

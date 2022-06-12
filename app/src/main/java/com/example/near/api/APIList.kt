@@ -33,7 +33,7 @@ interface APIList {
     //회원 정보 수정
     @FormUrlEncoded
     @PATCH("/user")
-    fun patchUserInfo(@Field("field")fieId:String, @Field("value")value:String) : Call<BasicResponse>
+    fun patchUserInfo(@Field("field")fieId:String, @Field("value")value:String, @Field("current_password")currentPw : String?) : Call<BasicResponse>
     //회원 프로필 이미지 등록
     @FormUrlEncoded
     @PUT("/user/image")
@@ -59,4 +59,10 @@ interface APIList {
     @GET("/product")
     fun getAllProductList() : Call<BasicResponse>
 
+    //모든 카테고리 조회
+    @GET("/category")
+    fun getAllCategory() : Call<BasicResponse>
+    //소분류 카테고리 조회
+    @GET("/category/small/{small_category_id}")
+    fun getSmallCategoryList(@Path("small_category_id")smallID : Int) : Call<BasicResponse>
 }

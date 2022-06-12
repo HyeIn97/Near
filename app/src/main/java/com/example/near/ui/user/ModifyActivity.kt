@@ -67,7 +67,7 @@ class ModifyActivity : BaseActivity() {
 
     fun modifyUserNick(){
         val userNick = binding.userNickEdt.text.toString()
-        apiList.patchUserInfo(USERNICK, userNick).enqueue(object : Callback<BasicResponse>{
+        apiList.patchUserInfo(USERNICK, userNick, null).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
@@ -88,7 +88,7 @@ class ModifyActivity : BaseActivity() {
 
     fun modifyUserPhone(){
         val userPhone = binding.userPhoneEdt.text.toString()
-        apiList.patchUserInfo(USERPHONE, userPhone).enqueue(object : Callback<BasicResponse>{
+        apiList.patchUserInfo(USERPHONE, userPhone, null).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
