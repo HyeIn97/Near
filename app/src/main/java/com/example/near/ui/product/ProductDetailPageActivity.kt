@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.near.R
+import com.example.near.adapters.DetailReviewRecyclerAdapter
 import com.example.near.adapters.ProductDetailPageAdapter
 import com.example.near.databinding.ActivityProductDetailPageBinding
+import com.example.near.databinding.FragmentProductDetailReviewBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.ProductData
 import com.example.near.models.ReviewData
@@ -19,10 +23,12 @@ import retrofit2.Response
 
 class ProductDetailPageActivity : BaseActivity() {
     lateinit var binding : ActivityProductDetailPageBinding
+    lateinit var reviewTapBinding : FragmentProductDetailReviewBinding
     lateinit var mProductDetailPageAdapter : ProductDetailPageAdapter
-    lateinit var data : ProductData
-    lateinit var mStoreObj : StoreData
-    lateinit var mReviewsList : ArrayList<ReviewData>
+    lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
+    var data : ProductData? = null
+    var mStoreObj : StoreData? = null
+    var mReviewsList : ArrayList<ReviewData> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_page)
@@ -30,6 +36,7 @@ class ProductDetailPageActivity : BaseActivity() {
         Log.d("data________!!!", data.toString())
         setUpEvents()
         setValues()
+        initAdapter()
     }
 
     override fun setUpEvents() {
@@ -47,12 +54,15 @@ class ProductDetailPageActivity : BaseActivity() {
     }
 
     fun getData(){
-        apiList.getProductDetail(data.id.toString()).enqueue(object : Callback<BasicResponse>{
+        apiList.getProductDetail(data!!.id.toString()).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
                     mStoreObj = br.data.product.store!!
                     mReviewsList = br.data.product.reviews!!
+                    Log.d("mReviewsList________!!!!!!",mReviewsList.toString())
+                    mLeviewPageAdapter.notifyDataSetChanged()
+                    setData()
                 }
             }
 
@@ -71,5 +81,19 @@ class ProductDetailPageActivity : BaseActivity() {
                 else -> tab.text = "리뷰"
             }
         }.attach()
+    }
+
+    fun setData(){
+        Glide.with(mContext).load(data!!.img).into(binding.productImg)
+        binding.productNameTxt.text = data!!.name
+        binding.productPriceTxt.text = data!!.price.toString()
+        binding.storeNameTxt.text = mStoreObj!!.name
+        Glide.with(mContext).load(mStoreObj!!.img).into(binding.storeProfileImg)
+    }
+
+    fun initAdapter(){
+        mLeviewPageAdapter = DetailReviewRecyclerAdapter(mContext, mReviewsList)
+        reviewTapBinding.detailReviewRecyclerView.adapter = mLeviewPageAdapter
+        reviewTapBinding.detailReviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
     }
 }

@@ -13,6 +13,7 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_modify.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_pass_word_modify.xml" value="0.264" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_detail_page.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_list.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_setting.xml" value="0.264" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_sign.xml" value="0.25364583333333335" />
@@ -27,41 +28,30 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_category_test.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_home.xml" value="0.152" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_my_page.xml" value="0.2" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_product_detail_review.xml" value="0.11574074074074074" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_card.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_card_list.xml" value="0.15925925925925927" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_category.xml" value="0.16018518518518518" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_grid_product.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_home_list.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_large_category.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product.xml" value="0.4" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_header.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_review.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_recyclerview_home_header.xml" value="0.264" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_samll_category_list.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_small_categories.xml" value="0.4" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_main.xml" value="0.22314814814814815" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_modify.xml" value="0.11666666666666667" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_detail_page.xml" value="0.29873417721518986" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_ditail_page.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_list.xml" value="0.28421052631578947" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_small_category.xml" value="0.1" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_cart.xml" value="0.11" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_category.xml" value="0.33" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_category_test.xml" value="0.1175925925925926" />
+        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/activity_product_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_home.xml" value="0.27247191011235955" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_my_page.xml" value="0.221875" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_product_detail_info.xml" value="0.1" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/fragment_product_detail_review.xml" value="0.1" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_card.xml" value="0.1" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_category.xml" value="0.1" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_grid_product.xml" value="0.2864583333333333" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_home_list.xml" value="0.25" />
+        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_home_list.xml" value="0.1" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_product.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_header.xml" value="0.2328125" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_recyclerview_home_header.xml" value="0.25" />
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_recyclerview_main_header.xml" value="0.25" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_samll_category_list.xml" value="0.1638888888888889" />
-        <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_small_categories.xml" value="0.1638888888888889" />
       </map>
     </option>
   </component>
