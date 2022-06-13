@@ -96,6 +96,7 @@ class CategoryFragment : BaseFragment() {
 
     fun category(item : Int){
         val list = mLageCategoryList[item]
+        Log.d("listlistlistlistlist_____",list.toString())
         //val smList = mSmallCategoryList.addAll(list.smallCategory)
         //Log.d("mSmallCategoryList_____",mSmallCategoryList.toString())
         Log.d("값이 가긴한느거 ?",list.toString())

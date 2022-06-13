@@ -43,7 +43,6 @@ class SmallCategoryActivity : BaseActivity() {
     override fun setValues() {
         val list = intent.getSerializableExtra("list") as LageCategoryData?
         titleTxt.text = list!!.name
-        Log.d("mediaContentList_______", list.toString())
         titleTxt.visibility = View.VISIBLE
         backBtn.visibility = View.VISIBLE
         homeBtn.visibility = View.VISIBLE
@@ -51,24 +50,22 @@ class SmallCategoryActivity : BaseActivity() {
 
         val smallList = list.smallCategory
         mSmallCategoryAdapter = SmallCategoryAdapter(this, smallList)
-        Log.d("id______", list.id.toString())
         binding.smallCategoryViewPager.adapter = mSmallCategoryAdapter
-
-        Log.d("list.smallCategory_______", list.smallCategory.toString())
 
 
         TabLayoutMediator(binding.tabLayout, binding.smallCategoryViewPager) { tab, positon ->
 //            for(i in smallList){
 //                tab.text = i.name
 //                Log.d("tab.text_______", tab.text.toString())
+//            }   
+//            when(positon){
+//                0 -> tab.text = smallList[0].name
+//                1 -> tab.text = smallList[1].name
+//                2 -> tab.text = smallList[2].name
+//                3 -> tab.text = smallList[3].name
+//                else -> tab.text = smallList[4].name
 //            }
-            when(positon){
-                0 -> tab.text = smallList[0].name
-                1 -> tab.text = smallList[1].name
-                2 -> tab.text = smallList[2].name
-                3 -> tab.text = smallList[3].name
-                else -> tab.text = smallList[4].name
-            }
+            tab.text = smallList[positon].name
         }.attach()
     }
 }

@@ -115,17 +115,25 @@ class MyPageFragment : BaseFragment() {
                     mPopProductList.clear()
                     mSugProductList.clear()
                     val br = response.body()!!
-                    for (i in br.data.reviews) {
-                        val jsonObj = JSONObject(i.toString())
-                        val product = jsonObj.getJSONObject("product")
-                        //Log.d("product", "${product}")
-                        val id = product.getInt("id")
-                        val name = product.getString("name")
-                        val price = product.getInt("price")
-                        val img = product.getString("image_url")
-                        val popList = ProductData(id, name, price, img)
+//                    for (i in br.data.reviews) {
+//                        val jsonObj = JSONObject(i.toString())
+//                        val product = jsonObj.getJSONObject("product")
+//                        //Log.d("product", "${product}")
+//                        val id = product.getInt("id")
+//                        val name = product.getString("name")
+//                        val price = product.getInt("price")
+//                        val img = product.getString("image_url")
+//                        val popList = ProductData(id, name, price, img)
+//                        if (mPopProductList.size <= 2) {
+//                            mPopProductList.add(popList)
+//                        }
+//                    }
+                    val reviews = br.data.reviews
+                    Log.d("reviews_____", reviews.toString())
+                    for(i in reviews){
                         if (mPopProductList.size <= 2) {
-                            mPopProductList.add(popList)
+                            mPopProductList.add(i.product)
+                            Log.d("i.product____", i.product.toString())
                         }
                     }
                     mTotalProductList.add(mPopProductList)
@@ -143,24 +151,31 @@ class MyPageFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     val br = response.body()!!
-                    val productData = br.data.products
-                    for (i in productData) {
-                        val jsonObj = JSONObject(i.toString())
-                        val id = jsonObj.getInt("id")
-                        val name = jsonObj.getString("name")
-                        val price = jsonObj.getInt("price")
-                        val img = jsonObj.getString("image_url")
-                        val sugList = ProductData(id, name, price, img)
-                        if (mSugProductList.size <= 2) {
-                            mSugProductList.add(sugList)
-                        }
-                    }
+//                    val productData = br.data.products
+//                    for (i in productData) {
+//                        val jsonObj = JSONObject(i.toString())
+//                        val id = jsonObj.getInt("id")
+//                        val name = jsonObj.getString("name")
+//                        val price = jsonObj.getInt("price")
+//                        val img = jsonObj.getString("image_url")
+//                        val sugList = ProductData(id, name, price, img)
+//                        if (mSugProductList.size <= 2) {
+//                            mSugProductList.add(sugList)
+//                        }
+//                    }
 //                    val productData = br.data.products
 //                    for (i in productData) {
 //                        if (mSugProductList.size <= 2) {
 //                            mSugProductList.add(i)
 //                        }
 //                    }
+
+                    val product = br.data.products
+                    for(i in product){
+                        if (mSugProductList.size <= 2) {
+                            mSugProductList.add(i)
+                        }
+                    }
                     mTotalProductList.add(mSugProductList)
                     myPageAdapter.addData(mTotalProductList)
                     myPageAdapter.notifyDataSetChanged()

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.product.ProductDetailPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".SmallCategoryActivity"
             android:exported="false" />
         <activity

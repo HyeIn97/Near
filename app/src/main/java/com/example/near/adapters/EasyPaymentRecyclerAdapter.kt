@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.near.R
 import com.example.near.models.CardData
 
+//카드 등록 리싸이클러뷰
 class EasyPaymentRecyclerAdapter(val mContext : Context, val mList : ArrayList<CardData>) : RecyclerView.Adapter<EasyPaymentRecyclerAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val row = LayoutInflater.from(mContext).inflate(R.layout.item_card, parent, false)
+        val row = LayoutInflater.from(mContext).inflate(R.layout.item_grid_product, parent, false)
         return ItemViewHolder(row)
     }
 

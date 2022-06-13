@@ -65,4 +65,7 @@ interface APIList {
     //소분류 카테고리 조회
     @GET("/category/small/{small_category_id}")
     fun getSmallCategoryList(@Path("small_category_id")smallID : Int) : Call<BasicResponse>
+    //특정 상품 상세보기
+    @GET("/product/{product_id}")
+    fun getProductDetail(@Path("product_id")id : String) : Call<BasicResponse>
 }

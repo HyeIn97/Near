@@ -1,6 +1,7 @@
 package com.example.near.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class UserData(
     val id : Int,
@@ -10,5 +11,4 @@ data class UserData(
     val nickName : String,
     @SerializedName("profile_img")
     val profileImg : String
-    ) {
-}
+    ) : Serializable

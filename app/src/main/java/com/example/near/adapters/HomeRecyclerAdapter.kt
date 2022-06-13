@@ -23,6 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
+//메인홈 페이지 리싸이클러뷰
 class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>) : /*ArrayList<ArrayList<ProductData>>*/
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val HEADER = 0

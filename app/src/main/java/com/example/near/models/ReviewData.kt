@@ -1,6 +1,7 @@
 package com.example.near.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ReviewData (
     val id : Int,
@@ -13,5 +14,4 @@ data class ReviewData (
     val img : String,
     val user : UserData,
     val product : ProductData
-        ){
-}
+    ) : Serializable

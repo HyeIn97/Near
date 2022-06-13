@@ -13,6 +13,7 @@ import com.example.near.R
 import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
 
+//메인 + 마이페이지 Grid 사용안하고 상품 가로 정렬
 class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<ProductHorizontalAdapter.ItemViewHolder>() {
     val POP = 0
     val SUP = 1

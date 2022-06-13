@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.near.databinding.FragmentMyPageBinding
 import com.example.near.models.ProductData
 
+//마이페이지 리싸이클러뷰 어댑터
 class MyPageRecyclerAdapter(val mContext: Context /*, val mProductList: ArrayList<ArrayList<ProductData>>*/) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val header = 1
     val item = 2
