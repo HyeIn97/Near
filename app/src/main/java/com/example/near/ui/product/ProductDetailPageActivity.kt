@@ -26,9 +26,10 @@ class ProductDetailPageActivity : BaseActivity() {
     lateinit var reviewTapBinding : FragmentProductDetailReviewBinding
     lateinit var mProductDetailPageAdapter : ProductDetailPageAdapter
     lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
-    var data : ProductData? = null
-    var mStoreObj : StoreData? = null
+    lateinit var data : ProductData
+    lateinit var mStoreObj : StoreData
     var mReviewsList : ArrayList<ReviewData> = arrayListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_page)
@@ -36,7 +37,6 @@ class ProductDetailPageActivity : BaseActivity() {
         Log.d("data________!!!", data.toString())
         setUpEvents()
         setValues()
-        initAdapter()
     }
 
     override fun setUpEvents() {
@@ -49,8 +49,9 @@ class ProductDetailPageActivity : BaseActivity() {
         backBtn.visibility = View.VISIBLE
         cartBtn.visibility = View.VISIBLE
         homeBtn.visibility = View.VISIBLE
-        getData()
         tabLayout()
+        getData()
+        initAdapter()
     }
 
     fun getData(){
