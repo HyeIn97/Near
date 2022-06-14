@@ -1,21 +1,31 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.ReviewData
 
 class DetailReviewRecyclerAdapter(val mContext : Context, val mList : ArrayList<ReviewData>) : RecyclerView.Adapter<DetailReviewRecyclerAdapter.ItemViewHolder>() {
+    lateinit var frag: Fragment
+
     inner class ItemViewHolder(view : View): RecyclerView.ViewHolder(view){
         val userId = view.findViewById<TextView>(R.id.userId)
         val userTitle = view.findViewById<TextView>(R.id.titleTxt)
         val userScore = view.findViewById<RatingBar>(R.id.ratingBar)
+        val reviewImg = view.findViewById<ImageView>(R.id.reviewImg)
+
         fun bind(item : ReviewData){
+            Log.d("tiem______", item.toString())
+            Glide.with(mContext).load(item.img).into(reviewImg)
             userId.text = item.user.nickName
             userTitle.text = item.title
             userScore.rating = item.score.toFloat()
@@ -32,6 +42,7 @@ class DetailReviewRecyclerAdapter(val mContext : Context, val mList : ArrayList<
     }
 
     override fun getItemCount(): Int {
+        Log.d("mList.size_____", mList.size.toString())
         return mList.size
     }
 }

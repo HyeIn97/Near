@@ -23,9 +23,9 @@ import retrofit2.Response
 
 class ProductDetailPageActivity : BaseActivity() {
     lateinit var binding : ActivityProductDetailPageBinding
-    lateinit var reviewTapBinding : FragmentProductDetailReviewBinding
+    //lateinit var reviewTapBinding : FragmentProductDetailReviewBinding
     lateinit var mProductDetailPageAdapter : ProductDetailPageAdapter
-    lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
+//    lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
     lateinit var data : ProductData
     lateinit var mStoreObj : StoreData
     var mReviewsList : ArrayList<ReviewData> = arrayListOf()
@@ -51,18 +51,17 @@ class ProductDetailPageActivity : BaseActivity() {
         homeBtn.visibility = View.VISIBLE
         tabLayout()
         getData()
-        initAdapter()
     }
 
     fun getData(){
-        apiList.getProductDetail(data!!.id.toString()).enqueue(object : Callback<BasicResponse>{
+        apiList.getProductDetail(data.id.toString()).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
                     mStoreObj = br.data.product.store!!
                     mReviewsList = br.data.product.reviews!!
                     Log.d("mReviewsList________!!!!!!",mReviewsList.toString())
-                    mLeviewPageAdapter.notifyDataSetChanged()
+                    //mLeviewPageAdapter.notifyDataSetChanged()
                     setData()
                 }
             }
@@ -85,16 +84,16 @@ class ProductDetailPageActivity : BaseActivity() {
     }
 
     fun setData(){
-        Glide.with(mContext).load(data!!.img).into(binding.productImg)
-        binding.productNameTxt.text = data!!.name
-        binding.productPriceTxt.text = data!!.price.toString()
-        binding.storeNameTxt.text = mStoreObj!!.name
-        Glide.with(mContext).load(mStoreObj!!.img).into(binding.storeProfileImg)
+        Glide.with(mContext).load(data.img).into(binding.productImg)
+        binding.productNameTxt.text = data.name
+        binding.productPriceTxt.text = data.price.toString()
+        binding.storeNameTxt.text = mStoreObj.name
+        Glide.with(mContext).load(mStoreObj.img).into(binding.storeProfileImg)
     }
 
-    fun initAdapter(){
-        mLeviewPageAdapter = DetailReviewRecyclerAdapter(mContext, mReviewsList)
-        reviewTapBinding.detailReviewRecyclerView.adapter = mLeviewPageAdapter
-        reviewTapBinding.detailReviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
-    }
+//    fun initAdapter(){
+//        mLeviewPageAdapter = DetailReviewRecyclerAdapter(mContext, mReviewsList)
+//        reviewTapBinding.detailReviewRecyclerView.adapter = mLeviewPageAdapter
+//        reviewTapBinding.detailReviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
+//    }
 }
