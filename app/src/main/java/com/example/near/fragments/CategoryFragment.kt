@@ -46,10 +46,10 @@ class CategoryFragment : BaseFragment() {
         binding.foodBtn.setOnClickListener {
             category(0)
         }
-        binding.lifeBtn.setOnClickListener {
+        binding.dressBtn.setOnClickListener {
             category(1)
         }
-        binding.dressBtn.setOnClickListener {
+        binding.lifeBtn.setOnClickListener {
             category(2)
         }
         binding.petBtn.setOnClickListener {
@@ -74,19 +74,9 @@ class CategoryFragment : BaseFragment() {
                 if(response.isSuccessful){
                     mLageCategoryList.clear()
                     val br = response.body()!!
-                    Log.d("br________", br.data.toString())
                     val category = br.data.categories
-                    Log.d("category________", category.toString())
-//                    for(i in category){
-//                        mSmallCategoryList.addAll(i.smallCategories)
-//                    }
                     mLageCategoryList.addAll(category)
-                    Log.d("mLageCategoryList________", mLageCategoryList.toString())
                 }
-        val list = mLageCategoryList[0]
-        Log.d("list_____",list.toString())
-                //mAtapter.notifyDataSetChanged()
-
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
@@ -96,10 +86,6 @@ class CategoryFragment : BaseFragment() {
 
     fun category(item : Int){
         val list = mLageCategoryList[item]
-        Log.d("listlistlistlistlist_____",list.toString())
-        //val smList = mSmallCategoryList.addAll(list.smallCategory)
-        //Log.d("mSmallCategoryList_____",mSmallCategoryList.toString())
-        Log.d("값이 가긴한느거 ?",list.toString())
         myIntent = Intent(mContext, SmallCategoryActivity::class.java)
         myIntent.putExtra("list", list)
         startActivity(myIntent)

@@ -12,6 +12,8 @@ data class ReviewData (
     val productId : Int,
     @SerializedName("thumbnail_img")
     val img : String,
+    @SerializedName("created_at")
+    val date : String,
     val user : UserData,
     val product : ProductData
     ) : Serializable

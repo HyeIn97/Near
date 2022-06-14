@@ -42,6 +42,7 @@ class SmallCategoryActivity : BaseActivity() {
 
     override fun setValues() {
         val list = intent.getSerializableExtra("list") as LageCategoryData?
+        Log.d("listlistlistlistlistlistlistlistlistlistlist", list.toString())
         titleTxt.text = list!!.name
         titleTxt.visibility = View.VISIBLE
         backBtn.visibility = View.VISIBLE

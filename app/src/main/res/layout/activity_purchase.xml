@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="결제하실 카드를 선택해주세요."
-        android:textSize="10sp"/>
+        android:textSize="12sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

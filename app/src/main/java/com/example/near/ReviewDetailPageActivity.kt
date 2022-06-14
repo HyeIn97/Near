@@ -3,6 +3,8 @@ package com.example.near
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.near.adapters.ReviewDetailPageRecyclerAdapter
@@ -22,7 +24,7 @@ class ReviewDetailPageActivity : BaseActivity() {
     var mRepliesList : ArrayList<RepliesData> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_review_detail_page)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_review_detail_page)
         data = intent.getSerializableExtra("data") as ReviewData
         Log.d("리뷰 datadata",data.toString())
         initAdapter()
@@ -33,6 +35,9 @@ class ReviewDetailPageActivity : BaseActivity() {
     override fun setUpEvents() {
         backBtn.setOnClickListener {
             finish()
+        }
+        binding.commentBtn.setOnClickListener {
+            addComment()
         }
     }
 
@@ -49,8 +54,12 @@ class ReviewDetailPageActivity : BaseActivity() {
         apiList.getReviewReply(data.id.toString()).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
+                    mRepliesList.clear()
                     val br = response.body()!!
-                    mRepliesList.addAll(br.data.replies)
+                    if(br.data.replies.size > 0){
+                        mRepliesList.addAll(br.data.replies)
+                    }
+                    Log.d("mRepliesList______",mRepliesList.toString())
                 }
                 mReviewRepliesAdapter.notifyDataSetChanged()
             }
@@ -69,6 +78,27 @@ class ReviewDetailPageActivity : BaseActivity() {
     fun addValue(){
         binding.titleTxt.text = data.title
         binding.contentTxt.text = data.content
-        //binding.dateTxt.text = data.
+        binding.ratingBar.rating = data.score.toFloat()
+        binding.dateTxt.text = data.date
+        Glide.with(mContext).load(data.img).into(binding.reviewImg)
+    }
+
+    fun addComment(){
+        val inputComment = binding.inputCommentEdt.text.toString()
+        apiList.postReviewReply(data.id.toString(), inputComment).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    Log.d("된거?", "몰라")
+                    val myItnent = intent
+                    finish()
+                    overridePendingTransition(0, 0)
+                    startActivity(myItnent)
+                    overridePendingTransition(0, 0)
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
     }
 }

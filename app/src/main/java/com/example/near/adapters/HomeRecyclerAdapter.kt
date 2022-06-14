@@ -5,18 +5,21 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.near.ui.product.ProductListActivity
+import com.example.near.SmallCategoryActivity
 import com.example.near.api.APIList
 import com.example.near.api.ServerAPI
 import com.example.near.databinding.ItemHomeListBinding
 import com.example.near.databinding.ItemRecyclerviewHomeHeaderBinding
+import com.example.near.fragments.CategoryFragment
 import com.example.near.models.BasicResponse
-import com.example.near.models.HomeListData
+import com.example.near.models.LageCategoryData
 import com.example.near.models.ProductData
+import com.example.near.ui.product.ProductDetailPageActivity
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +34,7 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     lateinit var frag: Fragment
     lateinit var apiList : APIList
     lateinit var retrofit : Retrofit
+    val mLageCategoryList = ArrayList<LageCategoryData>()
 
     inner class HeaderViewHolder(val headerBinding: ItemRecyclerviewHomeHeaderBinding) :
         RecyclerView.ViewHolder(headerBinding.root) {
@@ -49,11 +53,9 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
                         val br = response.body()!!
                         mImgList.clear()
                         for(i in br.data.banners){
-                            Log.d("i", "${i}")
                             val jsonObj = JSONObject(i.toString())
                             val imgUrl = jsonObj.getString("img_url")
                             mImgList.add(imgUrl)
-                            Log.d("mImgList", mImgList.toString())
                         }
 
                         Glide.with(mContext).load(mImgList[0]).into(headerBinding.imgView1)
@@ -71,21 +73,22 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
                 }
 
             })
+
+            getData()
+
             headerBinding.foodBtn.setOnClickListener {
-                myIntent = Intent(mContext, ProductListActivity::class.java)
-                mContext.startActivity(myIntent)
-            }
-            headerBinding.lifeBtn.setOnClickListener {
-                myIntent = Intent(mContext, ProductListActivity::class.java)
-                mContext.startActivity(myIntent)
+                category(0)
+                //myIntent = Intent(mContext, SmallCategoryActivity::class.java)
+                //mContext.startActivity(myIntent)
             }
             headerBinding.dressBtn.setOnClickListener {
-                myIntent = Intent(mContext, ProductListActivity::class.java)
-                mContext.startActivity(myIntent)
+                category(1)
+            }
+            headerBinding.lifeBtn.setOnClickListener {
+                category(2)
             }
             headerBinding.petBtn.setOnClickListener {
-                myIntent = Intent(mContext, ProductListActivity::class.java)
-                mContext.startActivity(myIntent)
+                category(3)
             }
         }
     }
@@ -95,6 +98,14 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
         fun itemBind(items:ArrayList<ProductData>){
             Log.d("items",items.toString())
             val horizonAdapter = ProductHorizontalAdapter(mContext, items)
+            horizonAdapter.setItemClickListener(object : ProductHorizontalAdapter.ItemClickListener{
+                override fun onItemClick(position: Int) {
+                    val myIntent = Intent(mContext, ProductDetailPageActivity::class.java)
+                    Log.d("mProductList[position]________?????", items[position].toString())
+                    myIntent.putExtra("data", items[position])
+                    mContext.startActivity(myIntent)
+                }
+            })
             itemBinding.recyclerViewVertical.adapter = horizonAdapter
             itemBinding.recyclerViewVertical.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         }
@@ -132,6 +143,29 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
                 holder.itemBind(mProductList[position-1])
             }
         }
+    }
+
+    fun category(item : Int){
+        val list = mLageCategoryList[item]
+        val myIntent = Intent(mContext, SmallCategoryActivity::class.java)
+        myIntent.putExtra("list", list)
+        mContext.startActivity(myIntent)
+    }
+
+    fun getData(){
+        apiList.getAllCategory().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    mLageCategoryList.clear()
+                    val br = response.body()!!
+                    val category = br.data.categories
+                    mLageCategoryList.addAll(category)
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
     }
 
 }

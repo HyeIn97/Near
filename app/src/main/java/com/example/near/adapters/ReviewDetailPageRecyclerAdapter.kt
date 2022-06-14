@@ -2,9 +2,11 @@ package com.example.near.adapters
 
 import android.content.ClipData
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.near.R
@@ -16,10 +18,20 @@ class ReviewDetailPageRecyclerAdapter(val mContext : Context, val mList : ArrayL
         val nickName = view.findViewById<TextView>(R.id.nickNameTxt)
         val comment = view.findViewById<TextView>(R.id.commentTxt)
         val date = view.findViewById<TextView>(R.id.dateTxt)
+        val nonReplies = view.findViewById<TextView>(R.id.nonRepliesTxt)
+        val replies = view.findViewById<LinearLayout>(R.id.repliesLayout)
         fun itemBind(item : RepliesData){
-            nickName.text = item.user.nickName
-            comment.text = item.content
-            date.text = item.date
+            if(item != null && !item.equals("")){
+                replies.visibility = View.VISIBLE
+                nickName.text = item.user.nickName
+                comment.text = item.content
+                date.text = item.date
+                Log.d("_________item", item.toString())
+            }else{
+                nonReplies.visibility = View.VISIBLE
+                Log.d("_________item", item.toString())
+            }
+
             //comment.text = item.
         }
     }

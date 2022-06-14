@@ -15,6 +15,7 @@ data class DataResponse(
     val cards : ArrayList<CardData>,
     val categories : ArrayList<LageCategoryData>,
     val carts : ArrayList<CartData>,
-    val replies: ArrayList<RepliesData>
+    val replies: ArrayList<RepliesData>,
+    val payment : PaymentData
 ) {
 }

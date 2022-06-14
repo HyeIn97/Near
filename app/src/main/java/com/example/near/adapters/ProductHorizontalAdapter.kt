@@ -10,14 +10,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
-import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
 
 //메인 + 마이페이지 Grid 사용안하고 상품 가로 정렬
 class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<ProductHorizontalAdapter.ItemViewHolder>() {
-    val POP = 0
-    val SUP = 1
+    lateinit var mItemClickListener : ItemClickListener
+
     inner class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view){
+        init {
+            itemView.setOnClickListener {
+                mItemClickListener.onItemClick(adapterPosition)
+            }
+        }
         val img = view.findViewById<ImageView>(R.id.productImg)
         val name = view.findViewById<TextView>(R.id.nameTxt)
         val price = view.findViewById<TextView>(R.id.priceTxt)
@@ -40,8 +44,15 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
     }
 
     override fun getItemCount(): Int {
-        //return mList.homePopProduct.ProductList.size
         return mList.size
+    }
+
+    interface ItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setItemClickListener(itemClickListener : ItemClickListener){
+        mItemClickListener = itemClickListener
     }
 
 

@@ -13,6 +13,14 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PurchaseCompleteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Near.NoActionBar" />
+        <activity
             android:name=".ReviewDetailPageActivity"
             android:exported="false" />
         <activity

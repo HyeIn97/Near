@@ -80,8 +80,11 @@ interface APIList {
     @POST("/purchase")
     fun postPurchaseProduct(@Field("product_id") productId : String, @Field("card_id") cardId : String) : Call<BasicResponse>
 
-    //리뷰
-    @FormUrlEncoded
+    //리뷰조회
     @GET("/review/{review_id}/reply")
     fun getReviewReply(@Path("review_id") id : String) : Call<BasicResponse>
+    //리뷰 댓글 작성
+    @FormUrlEncoded
+    @POST("/review/{review_id}/reply")
+    fun postReviewReply(@Path("review_id")id : String, @Field("content")content: String) : Call<BasicResponse>
 }
