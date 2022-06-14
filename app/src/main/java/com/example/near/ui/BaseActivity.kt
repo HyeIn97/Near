@@ -1,6 +1,7 @@
 package com.example.near.ui
 
 import android.content.Context
+import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -24,11 +25,12 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var searchBtn : ImageView
     lateinit var titleTxt : TextView
     lateinit var reviewPageActionBarLayout : LinearLayout
-    lateinit var nickNameTxt : TextView
     lateinit var backBtn : ImageView
     lateinit var homeBtn : ImageView
     lateinit var cartBtn : ImageView
     lateinit var settingBtn : ImageView
+    lateinit var nickNameTxt : TextView
+    lateinit var userImg : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +57,12 @@ abstract class BaseActivity : AppCompatActivity() {
         searchBtn = defActionBar.customView.findViewById(R.id.searchBtn)
         titleTxt = defActionBar.customView.findViewById(R.id.titleTxt)
         reviewPageActionBarLayout = defActionBar.customView.findViewById(R.id.reviewPageActionBarLayout)
-        nickNameTxt = defActionBar.customView.findViewById(R.id.nickNameTxt)
         backBtn = defActionBar.customView.findViewById(R.id.backBtn)
         homeBtn = defActionBar.customView.findViewById(R.id.homeBtn)
         cartBtn = defActionBar.customView.findViewById(R.id.cartBtn)
         settingBtn = defActionBar.customView.findViewById(R.id.settingBtn)
+        userImg = defActionBar.customView.findViewById(R.id.userImg)
+        nickNameTxt = defActionBar.customView.findViewById(R.id.nickNameTxt)
+
     }
 }

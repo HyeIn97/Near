@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ReviewDetailPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.product.ProductDetailPageActivity"
             android:exported="false" />
         <activity

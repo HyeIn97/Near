@@ -36,19 +36,20 @@
         android:orientation="horizontal"
         android:visibility="gone"
         android:gravity="center">
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/profile_icon"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userImg"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@mipmap/ic_launcher"
         android:layout_gravity="left|center"/>
     <TextView
         android:id="@+id/nickNameTxt"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="13dp"
         android:layout_gravity="center|right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="닉네임"
-        android:textSize="28sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
     </LinearLayout>

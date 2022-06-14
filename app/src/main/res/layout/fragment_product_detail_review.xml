@@ -4,9 +4,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/detailReviewRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="500dp"/>
+            <TextView
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/nonReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="등록 된 리뷰가 없습니다 !"/>
+        </FrameLayout>
     </LinearLayout>
 </layout>

@@ -68,4 +68,20 @@ interface APIList {
     //특정 상품 상세보기
     @GET("/product/{product_id}")
     fun getProductDetail(@Path("product_id")id : String) : Call<BasicResponse>
+
+    //장바구니 상품 등록
+    @FormUrlEncoded
+    @POST("/cart")
+    fun postAddCart(@Field("product_id") id : String) : Call<BasicResponse>
+    //장바구니 조회
+
+    //결제
+    @FormUrlEncoded
+    @POST("/purchase")
+    fun postPurchaseProduct(@Field("product_id") productId : String, @Field("card_id") cardId : String) : Call<BasicResponse>
+
+    //리뷰
+    @FormUrlEncoded
+    @GET("/review/{review_id}/reply")
+    fun getReviewReply(@Path("review_id") id : String) : Call<BasicResponse>
 }

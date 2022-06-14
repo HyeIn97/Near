@@ -1,16 +1,17 @@
 package com.example.near.ui.product
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.near.PurchaseActivity
 import com.example.near.R
-import com.example.near.adapters.DetailReviewRecyclerAdapter
 import com.example.near.adapters.ProductDetailPageAdapter
 import com.example.near.databinding.ActivityProductDetailPageBinding
-import com.example.near.databinding.FragmentProductDetailReviewBinding
+import com.example.near.fragments.BottomSheetDialogFragment
 import com.example.near.models.BasicResponse
 import com.example.near.models.ProductData
 import com.example.near.models.ReviewData
@@ -42,6 +43,21 @@ class ProductDetailPageActivity : BaseActivity() {
     override fun setUpEvents() {
         backBtn.setOnClickListener {
             finish()
+        }
+        binding.buyBtn.setOnClickListener {
+            val orderBottomDialogFragment : BottomSheetDialogFragment = BottomSheetDialogFragment{
+                when(it){
+                    0 -> {
+                        cart()
+                    }
+                    1 -> {
+                        val myIntent = Intent(mContext, PurchaseActivity::class.java)
+                        myIntent.putExtra("data", data)
+                        startActivity(myIntent)
+                    }
+                }
+            }
+            orderBottomDialogFragment.show(supportFragmentManager, orderBottomDialogFragment.tag)
         }
     }
 
@@ -89,6 +105,19 @@ class ProductDetailPageActivity : BaseActivity() {
         binding.productPriceTxt.text = data.price.toString()
         binding.storeNameTxt.text = mStoreObj.name
         Glide.with(mContext).load(mStoreObj.img).into(binding.storeProfileImg)
+    }
+
+    fun cart(){
+        apiList.postAddCart(data.id.toString()).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    Toast.makeText(mContext, "장바구니에 담았습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
     }
 
 //    fun initAdapter(){

@@ -14,12 +14,18 @@ import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.ReviewData
 
-class DetailReviewRecyclerAdapter(val mContext : Context, val mList : ArrayList<ReviewData>) : RecyclerView.Adapter<DetailReviewRecyclerAdapter.ItemViewHolder>() {
+class ReviewListRecyclerAdapter(val mContext : Context, val mList : ArrayList<ReviewData>) : RecyclerView.Adapter<ReviewListRecyclerAdapter.ItemViewHolder>() {
     lateinit var frag: Fragment
+    lateinit var mItemClickListener : ItemClickListener
 
     inner class ItemViewHolder(view : View): RecyclerView.ViewHolder(view){
+        init {
+            itemView.setOnClickListener {
+                mItemClickListener.onItemClick(adapterPosition)
+            }
+        }
         val userId = view.findViewById<TextView>(R.id.userId)
-        val userTitle = view.findViewById<TextView>(R.id.titleTxt)
+        val userTitle = view.findViewById<TextView>(R.id.title)
         val userScore = view.findViewById<RatingBar>(R.id.ratingBar)
         val reviewImg = view.findViewById<ImageView>(R.id.reviewImg)
 
@@ -44,5 +50,13 @@ class DetailReviewRecyclerAdapter(val mContext : Context, val mList : ArrayList<
     override fun getItemCount(): Int {
         Log.d("mList.size_____", mList.size.toString())
         return mList.size
+    }
+
+    interface ItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setItemClickListener(itemClickListener : ItemClickListener){
+        mItemClickListener = itemClickListener
     }
 }

@@ -1,21 +1,22 @@
 package com.example.near.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.near.R
-import com.example.near.adapters.DetailReviewRecyclerAdapter
+import com.example.near.ReviewDetailPageActivity
+import com.example.near.adapters.ReviewListRecyclerAdapter
 import com.example.near.databinding.FragmentProductDetailReviewBinding
 import com.example.near.ui.product.ProductDetailPageActivity
 
 class ProductDetailReviewFragment : BaseFragment() {
     lateinit var binding : FragmentProductDetailReviewBinding
-    lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
+    lateinit var mLeviewPageAdapter : ReviewListRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +42,23 @@ class ProductDetailReviewFragment : BaseFragment() {
     }
 
     fun initAdapter(){
-        mLeviewPageAdapter = DetailReviewRecyclerAdapter(mContext, (mContext as ProductDetailPageActivity).mReviewsList)
+        mLeviewPageAdapter = ReviewListRecyclerAdapter(mContext, (mContext as ProductDetailPageActivity).mReviewsList)
         Log.d("(mContext as ProductDetailPageActivity).mReviewsList_____",(mContext as ProductDetailPageActivity).mReviewsList.toString())
         mLeviewPageAdapter.frag = this
+        mLeviewPageAdapter.setItemClickListener(object : ReviewListRecyclerAdapter.ItemClickListener{
+            override fun onItemClick(position: Int) {
+                val myIntent = Intent(mContext, ReviewDetailPageActivity::class.java)
+                myIntent.putExtra("data", (mContext as ProductDetailPageActivity).mReviewsList[position])
+                startActivity(myIntent)
+            }
+        })
         binding.detailReviewRecyclerView.adapter = mLeviewPageAdapter
         binding.detailReviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
+        if((mContext as ProductDetailPageActivity).mReviewsList.size > 0){
+            binding.detailReviewRecyclerView.visibility = View.VISIBLE
+        }else{
+            binding.nonReview.visibility = View.VISIBLE
+        }
         mLeviewPageAdapter.notifyDataSetChanged()
     }
 }

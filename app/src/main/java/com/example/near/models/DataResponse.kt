@@ -13,6 +13,8 @@ data class DataResponse(
     @SerializedName("point_logs")
     val point : JsonArray,
     val cards : ArrayList<CardData>,
-    val categories : ArrayList<LageCategoryData>
+    val categories : ArrayList<LageCategoryData>,
+    val carts : ArrayList<CartData>,
+    val replies: ArrayList<RepliesData>
 ) {
 }
