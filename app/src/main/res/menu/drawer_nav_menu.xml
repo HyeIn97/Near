@@ -17,6 +17,10 @@
         android:id="@+id/logout"
         android:title="로그아웃"
         android:icon="@drawable/right_icon"/>
+    <item
+        android:id="@+id/out"
+        android:title="탈퇴하기"
+        android:icon="@drawable/right_icon"/>
 </menu>
 
 

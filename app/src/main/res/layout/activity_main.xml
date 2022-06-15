@@ -40,7 +40,7 @@
             android:fitsSystemWindows="true"
             app:menu="@menu/drawer_nav_menu"
             app:itemIconSize="10dp"
-            app:itemIconTint="@color/blue_55"
+            app:itemIconTint="@color/black"
             app:itemIconPadding="25dp"/>
 <!--    이런식으로 프래그먼트 이동 + 스택 처리해줘야함-->
 <!--        <FrameLayout-->

@@ -1,15 +1,15 @@
-package com.example.near
+package com.example.near.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.example.near.R
 import com.example.near.adapters.SmallCategoryAdapter
 import com.example.near.databinding.ActivitySmallCategoryBinding
 import com.example.near.fragments.CartFragment
 import com.example.near.models.LageCategoryData
-import com.example.near.ui.BaseActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SmallCategoryActivity : BaseActivity() {

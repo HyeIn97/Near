@@ -20,7 +20,7 @@ class SmallCategoryRecyclerAdapter(val mContext: Context, val mList: ArrayList<P
     lateinit var mItemClickListener : ItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val row = LayoutInflater.from(mContext).inflate(R.layout.item_product, parent, false)
+        val row = LayoutInflater.from(mContext).inflate(R.layout.item_grid_product, parent, false)
         return ItemViewHolder(row)
     }
 
@@ -46,7 +46,7 @@ class SmallCategoryRecyclerAdapter(val mContext: Context, val mList: ArrayList<P
         fun bind(item: ProductData) {
             Glide.with(mContext).load(item.img).into(img)
             name.text = item.name
-            price.text = item.price.toString()
+            price.text = item.price.toString() + " 원"
             Log.d("왜 item__________", item.toString())
 
 //            itemView.setOnClickListener {

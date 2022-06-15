@@ -1,6 +1,7 @@
 package com.example.near.api
 
 import com.example.near.models.BasicResponse
+import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -35,9 +36,9 @@ interface APIList {
     @PATCH("/user")
     fun patchUserInfo(@Field("field")fieId:String, @Field("value")value:String, @Field("current_password")currentPw : String?) : Call<BasicResponse>
     //회원 프로필 이미지 등록
-    @FormUrlEncoded
+    @Multipart
     @PUT("/user/image")
-    fun putUserImg(@Field("profile_image")profileImg:String) : Call<BasicResponse>
+    fun putUserImg(@Part profileImg : MultipartBody.Part) : Call<BasicResponse>
     //회원 프로필 이미지 삭제
     @DELETE("/user/image")
     fun deleteUserImg() : Call<BasicResponse>
@@ -54,6 +55,9 @@ interface APIList {
     //리뷰목록 조회
     @GET("/user/review")
     fun getUserReviewList() : Call<BasicResponse>
+    //탈퇴
+    @DELETE("/user")
+    fun deleteUser(@Query("text") text : String) : Call<BasicResponse>
 
     //홈 배너 이미지
     @GET("/main/banner")
@@ -80,6 +84,8 @@ interface APIList {
     @POST("/cart")
     fun postAddCart(@Field("product_id") id : String) : Call<BasicResponse>
     //장바구니 조회
+    @GET("/cart")
+    fun getCartList() : Call<BasicResponse>
 
     //결제
     @FormUrlEncoded

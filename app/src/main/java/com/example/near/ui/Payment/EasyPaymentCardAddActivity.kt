@@ -1,9 +1,10 @@
-package com.example.near
+package com.example.near.ui.Payment
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.near.R
 import com.example.near.databinding.ActivityEasyPaymentCardAddBinding
 import com.example.near.models.BasicResponse
 import com.example.near.ui.BaseActivity

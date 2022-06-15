@@ -24,7 +24,7 @@ class PurchaseRecyclerAdapter(val mContext: Context, val mList : ArrayList<Produ
             Glide.with(mContext).load(item.store!!.img).into(storeImg)
             storeName.text = item.store.name
             productName.text = item.name
-            productPrice.text = item.price.toString()
+            productPrice.text = item.price.toString() + " 원"
         }
     }
 

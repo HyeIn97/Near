@@ -1,4 +1,4 @@
-package com.example.near
+package com.example.near.ui.Payment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.near.R
 import com.example.near.adapters.EasyPaymentRecyclerAdapter
 import com.example.near.databinding.ActivityEasyPaymentBinding
 import com.example.near.models.BasicResponse

@@ -2,7 +2,6 @@ package com.example.near.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.near.PurchaseListActivity
+import com.example.near.ui.purchase.PurchaseListActivity
 import com.example.near.ui.user.LoginActivity
 import com.example.near.R
-import com.example.near.UserReviewListActivity
+import com.example.near.ui.review.UserReviewListActivity
 import com.example.near.adapters.MyPageRecyclerAdapter
 import com.example.near.ui.user.SignActivity
 import com.example.near.databinding.FragmentMyPageBinding
 import com.example.near.models.*
 import com.example.near.utils.ContextUtil
 import com.example.near.utils.GlobalData
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

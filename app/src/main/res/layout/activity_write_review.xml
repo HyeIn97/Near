@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".WriteReviewActivity">
+    tools:context=".ui.review.WriteReviewActivity">
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"

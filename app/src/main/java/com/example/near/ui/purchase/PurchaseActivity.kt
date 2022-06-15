@@ -1,14 +1,14 @@
-package com.example.near
+package com.example.near.ui.purchase
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.near.R
 import com.example.near.adapters.PurchaseRecyclerAdapter
 import com.example.near.databinding.ActivityPurchaseBinding
 import com.example.near.models.BasicResponse
@@ -62,7 +62,6 @@ class PurchaseActivity : BaseActivity() {
     override fun setValues() {
         titleTxt.text = "결제"
         titleTxt.visibility = View.VISIBLE
-        backBtn.visibility = View.VISIBLE
         cartBtn.visibility = View.VISIBLE
         homeBtn.visibility = View.VISIBLE
     }

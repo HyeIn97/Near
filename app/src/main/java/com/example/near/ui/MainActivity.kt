@@ -11,19 +11,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
-import com.example.near.EasyPaymentActivity
-import com.example.near.PassWordModifyActivity
+import com.example.near.ui.Payment.EasyPaymentActivity
+import com.example.near.ui.user.PassWordModifyActivity
 import com.example.near.R
 import com.example.near.adapters.MainViewPagerAtapter
 import com.example.near.ui.user.UserInfoActivity
 import com.example.near.databinding.ActivityMainBinding
-import com.example.near.fragments.MyPageFragment
+import com.example.near.dialogs.CustomAlertDialog
+import com.example.near.models.BasicResponse
 import com.example.near.utils.ContextUtil
 import com.google.android.material.navigation.NavigationView
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
     lateinit var mPagerAdapter: MainViewPagerAtapter
+
 //    lateinit var drawerBinding : DrawerLayout
 //    lateinit var drawerNavBinding : NavigationView
 
@@ -76,7 +82,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     2 -> {
                         titleTxt.text = "장바구니"
                         titleTxt.visibility = View.VISIBLE
-                        backBtn.visibility = View.VISIBLE
+                        backBtn.visibility = View.GONE
                         nearIcon.visibility = View.GONE
                         searchBtn.visibility = View.GONE
                         homeBtn.visibility = View.GONE
@@ -147,6 +153,40 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     myIntent = Intent(mContext, MainActivity::class.java)
                     startActivity(myIntent)
                     finish()
+                    //val alert = CustomAlertDialog(mContext, requireActivity())
+                    //alert.myDialog()
+                }
+                R.id.out -> {
+                    var delete = ""
+                    val alert = CustomAlertDialog(mContext)
+                    alert.myDialog()
+                    alert.binding.titleTxt.text = "탈퇴하기"
+                    alert.binding.bodyTxt.text ="정말 탈퇴하시겠습니까? \n 하단에 '동의'를 입력하세요."
+                    alert.binding.contentEdt.hint = "동의"
+
+                    alert.binding.positiveBtn.setOnClickListener {
+                        delete = alert.binding.contentEdt.text.toString()
+                        apiList.deleteUser(delete).enqueue(object : Callback<BasicResponse>{
+                            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                                if(response.isSuccessful){
+                                    val br = response.body()!!
+                                    Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
+                                    alert.dialog.dismiss()
+                                }else{
+                                    val errBodyStr = response.errorBody()!!.string()
+                                    val jsonObj = JSONObject(errBodyStr)
+                                    val message = jsonObj.getString("message")
+                                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                            }
+                        })
+                    }
+                    alert.binding.negativeBtn.setOnClickListener {
+                        alert.dialog.dismiss()
+                    }
                 }
             }
             return false
@@ -170,4 +210,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         var ft: FragmentTransaction = fragmentManager.beginTransaction()
         ft.detach(fragment).attach(fragment).commit()
     }*/
+
+    fun secession(){
+
+    }
 }

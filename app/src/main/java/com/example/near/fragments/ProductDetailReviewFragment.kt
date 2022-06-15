@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.near.R
-import com.example.near.ReviewDetailPageActivity
+import com.example.near.ui.review.ReviewDetailPageActivity
 import com.example.near.adapters.ReviewListRecyclerAdapter
 import com.example.near.databinding.FragmentProductDetailReviewBinding
 import com.example.near.ui.product.ProductDetailPageActivity
@@ -43,7 +43,6 @@ class ProductDetailReviewFragment : BaseFragment() {
 
     fun initAdapter(){
         mLeviewPageAdapter = ReviewListRecyclerAdapter(mContext, (mContext as ProductDetailPageActivity).mReviewsList)
-        Log.d("(mContext as ProductDetailPageActivity).mReviewsList_____",(mContext as ProductDetailPageActivity).mReviewsList.toString())
         mLeviewPageAdapter.frag = this
         mLeviewPageAdapter.setItemClickListener(object : ReviewListRecyclerAdapter.ItemClickListener{
             override fun onItemClick(position: Int) {
@@ -59,6 +58,7 @@ class ProductDetailReviewFragment : BaseFragment() {
         }else{
             binding.nonReview.visibility = View.VISIBLE
         }
+        Log.d("(mContext as ProductDetailPageActivity).mReviewsList.size", (mContext as ProductDetailPageActivity).mReviewsList.size.toString())
         mLeviewPageAdapter.notifyDataSetChanged()
     }
 }

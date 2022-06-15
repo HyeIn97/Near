@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:rowCount="3">
         <ImageView
+            android:gravity="center"
             android:id="@+id/productImg"
             android:scaleType="fitXY"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
+            android:layout_width="0dp"
+            android:layout_columnWeight="1"
+            android:layout_height="120dp"
             android:src="@mipmap/ic_launcher"/>
         <TextView
-            android:id="@+id/nameTxt"
             android:layout_marginTop="5dp"
+            android:id="@+id/nameTxt"
             android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -22,9 +26,11 @@
         <TextView
             android:id="@+id/priceTxt"
             android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:text="금액"/>
+            android:text="금액"
+            android:layout_marginBottom="10dp"/>
     </GridLayout>
 </layout>

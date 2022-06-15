@@ -1,11 +1,11 @@
-package com.example.near
+package com.example.near.ui.review
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.near.R
 import com.example.near.adapters.UserReviewListRecyclerAdapter
 import com.example.near.databinding.ActivityUserReviewListBinding
 import com.example.near.models.ReviewData

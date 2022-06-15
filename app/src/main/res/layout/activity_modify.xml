@@ -13,6 +13,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/modifyProfileBtn"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userImg"
             android:layout_width="90dp"
@@ -20,12 +26,12 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"/>
         <TextView
-            android:id="@+id/modifyProfileBtn"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="프로필 사진 변경"/>
+        </LinearLayout>
         <TextView
             android:textSize="13dp"
             android:layout_marginTop="30sp"

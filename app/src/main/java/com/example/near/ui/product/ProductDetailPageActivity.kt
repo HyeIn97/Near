@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.near.PurchaseActivity
+import com.example.near.ui.purchase.PurchaseActivity
 import com.example.near.R
 import com.example.near.adapters.ProductDetailPageAdapter
 import com.example.near.databinding.ActivityProductDetailPageBinding
@@ -102,9 +102,9 @@ class ProductDetailPageActivity : BaseActivity() {
     fun setData(){
         Glide.with(mContext).load(data.img).into(binding.productImg)
         binding.productNameTxt.text = data.name
-        binding.productPriceTxt.text = data.price.toString()
+        binding.productPriceTxt.text = data.price.toString() + " 원"
         binding.storeNameTxt.text = mStoreObj.name
-        Glide.with(mContext).load(mStoreObj.img).into(binding.storeProfileImg)
+        //Glide.with(mContext).load(mStoreObj.img).into(binding.storeProfileImg)
     }
 
     fun cart(){

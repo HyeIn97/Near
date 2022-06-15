@@ -1,17 +1,18 @@
-package com.example.near
+package com.example.near.ui.purchase
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.near.R
 import com.example.near.adapters.PurchaseRecyclerAdapter
 import com.example.near.databinding.ActivityPurchaseCompleteBinding
 import com.example.near.models.PaymentData
 import com.example.near.models.ProductData
 import com.example.near.ui.BaseActivity
+import java.text.SimpleDateFormat
 
 class PurchaseCompleteActivity : BaseActivity() {
     lateinit var binding : ActivityPurchaseCompleteBinding
@@ -47,7 +48,9 @@ class PurchaseCompleteActivity : BaseActivity() {
         titleTxt.text = "결제완료"
         titleTxt.visibility = View.VISIBLE
         backBtn.visibility = View.VISIBLE
-        binding.purchaseDateTxt.text = data.date
+        val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(data.date)
+        val sdr = SimpleDateFormat("yy-MM-dd")
+        binding.purchaseDateTxt.text = sdr.format(form)
         binding.priceTxt.text = data.subscription.product.price.toString()
         binding.pointTxt.text = (data.amount.toInt()/100).toString()
     }

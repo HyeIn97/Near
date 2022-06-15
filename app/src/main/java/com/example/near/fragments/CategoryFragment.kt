@@ -2,13 +2,12 @@ package com.example.near.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.near.R
-import com.example.near.SmallCategoryActivity
+import com.example.near.ui.SmallCategoryActivity
 import com.example.near.databinding.FragmentCategoryTestBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.LageCategoryData

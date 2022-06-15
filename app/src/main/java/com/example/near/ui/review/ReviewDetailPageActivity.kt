@@ -1,12 +1,13 @@
-package com.example.near
+package com.example.near.ui.review
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.near.R
 import com.example.near.adapters.ReviewDetailPageRecyclerAdapter
 import com.example.near.databinding.ActivityReviewDetailPageBinding
 import com.example.near.models.BasicResponse
@@ -16,6 +17,7 @@ import com.example.near.ui.BaseActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 
 class ReviewDetailPageActivity : BaseActivity() {
     lateinit var binding : ActivityReviewDetailPageBinding
@@ -59,7 +61,6 @@ class ReviewDetailPageActivity : BaseActivity() {
                     if(br.data.replies.size > 0){
                         mRepliesList.addAll(br.data.replies)
                     }
-                    Log.d("mRepliesList______",mRepliesList.toString())
                 }
                 mReviewRepliesAdapter.notifyDataSetChanged()
             }
@@ -79,7 +80,9 @@ class ReviewDetailPageActivity : BaseActivity() {
         binding.titleTxt.text = data.title
         binding.contentTxt.text = data.content
         binding.ratingBar.rating = data.score.toFloat()
-        binding.dateTxt.text = data.date
+        val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(data.date)
+        val sdr = SimpleDateFormat("yy-MM-dd")
+        binding.dateTxt.text = sdr.format(form)
         Glide.with(mContext).load(data.img).into(binding.reviewImg)
     }
 

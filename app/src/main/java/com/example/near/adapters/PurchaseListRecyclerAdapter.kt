@@ -1,6 +1,7 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.PaymentData
+import java.text.SimpleDateFormat
 
 class PurchaseListRecyclerAdapter (val mContext : Context, val mList : ArrayList<PaymentData>) : RecyclerView.Adapter<PurchaseListRecyclerAdapter.ItemViewHolder>() {
     lateinit var mItemClickListener : ItemClickListener
@@ -25,10 +27,12 @@ class PurchaseListRecyclerAdapter (val mContext : Context, val mList : ArrayList
         val price = view.findViewById<TextView>(R.id.priceTxt)
         val point = view.findViewById<TextView>(R.id.pointTxt)
         fun bind(item : PaymentData){
-            buyDate.text = item.date
+            val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(item.date)
+            val sdr = SimpleDateFormat("yy-MM-dd")
+            buyDate.text = sdr.format(form)
             Glide.with(mContext).load(item.subscription.product.img).into(product)
             productName.text = item.subscription.product.name
-            price.text = item.subscription.product.price.toString()
+            price.text = item.subscription.product.price.toString() + " 원"
             point.text = (item.subscription.product.price / 100).toString()
         }
     }

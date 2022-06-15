@@ -3,26 +3,27 @@
     package="com.example.near">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Near"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".UserReviewListActivity"
+            android:name=".ui.review.UserReviewListActivity"
             android:exported="false" />
         <activity
-            android:name=".WriteReviewActivity"
+            android:name=".ui.review.WriteReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".PurchaseListActivity"
+            android:name=".ui.purchase.PurchaseListActivity"
             android:exported="false" />
         <activity
-            android:name=".PurchaseCompleteActivity"
+            android:name=".ui.purchase.PurchaseCompleteActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -30,25 +31,25 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Near.NoActionBar" />
         <activity
-            android:name=".ReviewDetailPageActivity"
+            android:name=".ui.review.ReviewDetailPageActivity"
             android:exported="false" />
         <activity
-            android:name=".PurchaseActivity"
+            android:name=".ui.purchase.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.product.ProductDetailPageActivity"
             android:exported="false" />
         <activity
-            android:name=".SmallCategoryActivity"
+            android:name=".ui.SmallCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".PassWordModifyActivity"
+            android:name=".ui.user.PassWordModifyActivity"
             android:exported="false" />
         <activity
-            android:name=".EasyPaymentCardAddActivity"
+            android:name=".ui.Payment.EasyPaymentCardAddActivity"
             android:exported="false" />
         <activity
-            android:name=".EasyPaymentActivity"
+            android:name=".ui.Payment.EasyPaymentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.ModifyActivity"

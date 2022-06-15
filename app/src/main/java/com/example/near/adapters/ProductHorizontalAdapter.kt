@@ -29,7 +29,7 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
         //받은데이터를 자리에 맞게 뿌려줘야함
             Glide.with(mContext).load(item.img).into(img)
             name.text = item.name
-            price.text = item.price.toString()
+            price.text = item.price.toString() + " 원"
             Log.d("name.text", name.text.toString())
         }
     }

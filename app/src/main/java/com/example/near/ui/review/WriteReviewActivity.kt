@@ -1,11 +1,11 @@
-package com.example.near
+package com.example.near.ui.review
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.near.adapters.UserReviewListRecyclerAdapter
+import com.example.near.R
 import com.example.near.databinding.ActivityWriteReviewBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.ProductData

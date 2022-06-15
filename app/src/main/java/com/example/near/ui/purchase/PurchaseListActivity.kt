@@ -1,11 +1,12 @@
-package com.example.near
+package com.example.near.ui.purchase
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.near.R
+import com.example.near.ui.review.WriteReviewActivity
 import com.example.near.adapters.PurchaseListRecyclerAdapter
 import com.example.near.databinding.ActivityPurchaseListBinding
 import com.example.near.models.PaymentData

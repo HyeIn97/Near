@@ -2,44 +2,51 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
+        android:background="@drawable/bottom_sheet_background_r20"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:behavior_hideable="true"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
         app:behavior_peekHeight="56dp"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-    <LinearLayout
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center|start"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/productNameTxt"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="상품명"/>
-        <TextView
-            android:id="@+id/productPriceTxt"
-            android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="가격"/>
-        <TextView
-            android:layout_marginTop="15dp"
-            android:textSize="10sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*해당 상품은 장기 구독 상품 입니다."/>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/productNameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상품명"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/productPriceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="가격"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="*해당 상품은 장기 구독 상품 입니다."
+                android:paddingBottom="15dp"
+                android:textSize="10sp" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +68,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/blue_55"
                 android:textColor="@color/white"
-                android:text="바로구매"
+                android:text="바로결제"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"/>
         </LinearLayout>
