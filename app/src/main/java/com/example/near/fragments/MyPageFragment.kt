@@ -9,17 +9,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.near.PurchaseListActivity
 import com.example.near.ui.user.LoginActivity
 import com.example.near.R
+import com.example.near.UserReviewListActivity
 import com.example.near.adapters.MyPageRecyclerAdapter
 import com.example.near.ui.user.SignActivity
 import com.example.near.databinding.FragmentMyPageBinding
-import com.example.near.models.BasicResponse
-import com.example.near.models.ProductData
-import com.example.near.models.ReviewData
+import com.example.near.models.*
 import com.example.near.utils.ContextUtil
 import com.example.near.utils.GlobalData
 import org.json.JSONObject
@@ -34,6 +33,9 @@ class MyPageFragment : BaseFragment() {
     var mPopProductList = ArrayList<ProductData>()
     var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
+    var mSubscriptionList : ArrayList<PaymentData> = arrayListOf()
+    var mReivewList : ArrayList<ReviewData> = arrayListOf()
+    lateinit var myIntent: Intent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,13 +55,25 @@ class MyPageFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+        myPagebinding.subCountLayout.setOnClickListener {
+            myIntent = Intent(mContext, PurchaseListActivity::class.java)
+            myIntent.putExtra("data", mSubscriptionList)
+            startActivity(myIntent)
+        }
 
+        myPagebinding.reviewCountLayout.setOnClickListener {
+            myIntent = Intent(mContext, UserReviewListActivity::class.java)
+            myIntent.putExtra("data", mReivewList)
+            startActivity(myIntent)
+        }
     }
 
     override fun setValues() {
         initAdapter()
         popularityList()
         suggestionList()
+        getPurchase()
+        getReview()
     }
 
     fun initAdapter() {
@@ -73,7 +87,7 @@ class MyPageFragment : BaseFragment() {
         if(ContextUtil.getLoginToken(mContext) == ""){
             ContextUtil.clear(mContext)
             myPagebinding.nonMemberLayout.visibility = View.VISIBLE
-            var myIntent: Intent
+
             myPagebinding.loginBtn.setOnClickListener {
                 myIntent = Intent(mContext, LoginActivity::class.java)
                 myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -85,7 +99,6 @@ class MyPageFragment : BaseFragment() {
                 startActivity(myIntent)
             }
         }else{
-            var userPoint = "0"
             myPagebinding.memberLayout.visibility = View.VISIBLE
                 myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
                 Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
@@ -94,16 +107,19 @@ class MyPageFragment : BaseFragment() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
+                    var userPoint = 0
                     if(response.isSuccessful){
                         val br = response.body()!!
-                        userPoint = br.data.point.toString()
+                        for(i in br.data.point){
+                            userPoint += i.amount
+                        }
+                        myPagebinding.pointTxt.text = userPoint.toString() + "원"
                     }
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
                 }
             })
-            myPagebinding.pointTxt.text = userPoint + "원"
         }
     }
 
@@ -115,25 +131,10 @@ class MyPageFragment : BaseFragment() {
                     mPopProductList.clear()
                     mSugProductList.clear()
                     val br = response.body()!!
-//                    for (i in br.data.reviews) {
-//                        val jsonObj = JSONObject(i.toString())
-//                        val product = jsonObj.getJSONObject("product")
-//                        //Log.d("product", "${product}")
-//                        val id = product.getInt("id")
-//                        val name = product.getString("name")
-//                        val price = product.getInt("price")
-//                        val img = product.getString("image_url")
-//                        val popList = ProductData(id, name, price, img)
-//                        if (mPopProductList.size <= 2) {
-//                            mPopProductList.add(popList)
-//                        }
-//                    }
                     val reviews = br.data.reviews
-                    Log.d("reviews_____", reviews.toString())
                     for(i in reviews){
                         if (mPopProductList.size <= 2) {
                             mPopProductList.add(i.product)
-                            Log.d("i.product____", i.product.toString())
                         }
                     }
                     mTotalProductList.add(mPopProductList)
@@ -151,25 +152,6 @@ class MyPageFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     val br = response.body()!!
-//                    val productData = br.data.products
-//                    for (i in productData) {
-//                        val jsonObj = JSONObject(i.toString())
-//                        val id = jsonObj.getInt("id")
-//                        val name = jsonObj.getString("name")
-//                        val price = jsonObj.getInt("price")
-//                        val img = jsonObj.getString("image_url")
-//                        val sugList = ProductData(id, name, price, img)
-//                        if (mSugProductList.size <= 2) {
-//                            mSugProductList.add(sugList)
-//                        }
-//                    }
-//                    val productData = br.data.products
-//                    for (i in productData) {
-//                        if (mSugProductList.size <= 2) {
-//                            mSugProductList.add(i)
-//                        }
-//                    }
-
                     val product = br.data.products
                     for(i in product){
                         if (mSugProductList.size <= 2) {
@@ -199,5 +181,35 @@ class MyPageFragment : BaseFragment() {
                 myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
             }
         }
+    }
+
+    fun getPurchase(){
+        apiList.getPaymentList().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    val br = response.body()!!
+                    mSubscriptionList.addAll(br.data.payments)
+                    myPagebinding.purchaseCountTxt.text = mSubscriptionList.size.toString()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    fun getReview(){
+        apiList.getUserReviewList().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    val br = response.body()!!
+                    mReivewList.addAll(br.data.reviews)
+                    myPagebinding.reviewCountTxt.text = mReivewList.size.toString()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
     }
 }

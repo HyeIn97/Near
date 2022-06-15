@@ -48,6 +48,12 @@ interface APIList {
     @FormUrlEncoded
     @POST("/user/card")
     fun postUserCardAdd(@Field("card_num")cardNum : String, @Field("card_nickname")cardNick:String, @Field("mm_yy")cardPeriod: String, @Field("birthday")birth:String, @Field("password_2digit")pw:String) : Call<BasicResponse>
+    //구독상품 조회
+    @GET("/user/payment")
+    fun getPaymentList() : Call<BasicResponse>
+    //리뷰목록 조회
+    @GET("/user/review")
+    fun getUserReviewList() : Call<BasicResponse>
 
     //홈 배너 이미지
     @GET("/main/banner")
@@ -80,11 +86,15 @@ interface APIList {
     @POST("/purchase")
     fun postPurchaseProduct(@Field("product_id") productId : String, @Field("card_id") cardId : String) : Call<BasicResponse>
 
-    //리뷰조회
+    //상품별 리뷰조회
     @GET("/review/{review_id}/reply")
     fun getReviewReply(@Path("review_id") id : String) : Call<BasicResponse>
     //리뷰 댓글 작성
     @FormUrlEncoded
     @POST("/review/{review_id}/reply")
     fun postReviewReply(@Path("review_id")id : String, @Field("content")content: String) : Call<BasicResponse>
+    //리뷰등록
+    @FormUrlEncoded
+    @POST("/review")
+    fun postReviewSave(@Field("product_id")id : String, @Field("title") title: String, @Field("content")content : String, @Field("score")score : Float, @Field("tag_list")tag: String, @Field("thumbnail_img")thumbnailImg : String?, @Field("review_images") reviewImg : String?) : Call<BasicResponse>
 }

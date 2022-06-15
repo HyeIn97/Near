@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UserReviewListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WriteReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseListActivity"
+            android:exported="false" />
+        <activity
             android:name=".PurchaseCompleteActivity"
             android:exported="false" />
         <activity
@@ -65,7 +74,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+            android:theme="@style/Theme.Near.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

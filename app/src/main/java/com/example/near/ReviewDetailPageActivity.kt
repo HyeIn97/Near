@@ -88,7 +88,6 @@ class ReviewDetailPageActivity : BaseActivity() {
         apiList.postReviewReply(data.id.toString(), inputComment).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
-                    Log.d("된거?", "몰라")
                     val myItnent = intent
                     finish()
                     overridePendingTransition(0, 0)

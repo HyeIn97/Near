@@ -85,6 +85,7 @@
                             android:src="@mipmap/ic_launcher" />
 
                         <LinearLayout
+                            android:id="@+id/subCountLayout"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -93,7 +94,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/subCountTxt"
+                                android:id="@+id/purchaseCountTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -111,6 +112,7 @@
 
 
                         <LinearLayout
+                            android:id="@+id/reviewCountLayout"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -136,6 +138,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/qnaCountLayout"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

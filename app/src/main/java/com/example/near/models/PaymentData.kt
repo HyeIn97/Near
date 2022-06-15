@@ -7,5 +7,6 @@ data class PaymentData(
     val id : Int,
     @SerializedName("created_at")
     val date : String,
-    val subscription : SubscriptionData
+    val subscription : SubscriptionData,
+    val amount : String
 ) : Serializable

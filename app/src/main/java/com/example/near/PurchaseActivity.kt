@@ -36,8 +36,6 @@ class PurchaseActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_purchase)
         data = intent.getSerializableExtra("data") as ProductData
         mList.add(data)
-        Log.d("mListmListmListmListmListmListmList_____", mList.toString())
-        Log.d("PurchaseActivitydata_____", data.toString())
         getCardList()
         initAdapter()
         setUpEvents()
@@ -51,14 +49,9 @@ class PurchaseActivity : BaseActivity() {
         binding.buyOkBtn.setOnClickListener {
             purchaseProduct()
         }
-//        spinnerAdapter = ArrayAdapter(mContext, android.R.layout.simple_expandable_list_item_1, mCardList)
-//        binding.checkCardSpinner.adapter = spinnerAdapter
         binding.checkCardSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                //무조건 처음뜨는 농협으로 자동 결제되는 문제 발생
                 mCheckCard = mCardList[position].id.toString()
-                Log.d("mCheckCard!!!!!!!!!!!!!!!1", mCheckCard)
-                //Toast.makeText(mContext, mCardList[position].id, Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -72,10 +65,6 @@ class PurchaseActivity : BaseActivity() {
         backBtn.visibility = View.VISIBLE
         cartBtn.visibility = View.VISIBLE
         homeBtn.visibility = View.VISIBLE
-
-        spinner()
-
-
     }
 
     fun initAdapter(){
@@ -89,12 +78,12 @@ class PurchaseActivity : BaseActivity() {
         apiList.postPurchaseProduct(data.id.toString(), mCheckCard).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
-                    Log.d("mCheckCard!!!!!!!!!!!!!!!1_____", mCheckCard)
                     val br = response.body()!!
                     val product = br.data.payment
                     val myIntent = Intent(mContext, PurchaseCompleteActivity::class.java)
                     myIntent.putExtra("data", product)
                     startActivity(myIntent)
+                    finish()
                 }else{
                     val errBodyStr = response.errorBody()!!.string()
                     val jsonObj = JSONObject(errBodyStr)
@@ -114,9 +103,7 @@ class PurchaseActivity : BaseActivity() {
                 if (response.isSuccessful){
                     val br = response.body()!!
                     mCardList.addAll(br.data.cards)
-                    Log.d("mCardList______", mCardList.toString())
                     mCardNickList.addAll(br.data.cards.map { it.cardNick })
-                    Log.d("mCardNickList______", mCardNickList.toString())
                     spinnerAdapter = ArrayAdapter(mContext, android.R.layout.simple_expandable_list_item_1, mCardNickList) //킵더 타임 출발지 설명 보고 따라하기
                     binding.checkCardSpinner.adapter = spinnerAdapter
                 }
@@ -126,9 +113,5 @@ class PurchaseActivity : BaseActivity() {
             }
         })
 
-    }
-    fun spinner(){
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, mCardList)
-//        binding.checkCardSpinner.adapter = adapter
     }
 }
