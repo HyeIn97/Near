@@ -1,6 +1,7 @@
 package com.example.near.fragments
 
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.example.near.databinding.FragmentHomeBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.HomeListData
 import com.example.near.models.ProductData
+import com.example.near.utils.ContextUtil
+import com.example.near.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +28,7 @@ class HomeFragment : BaseFragment() {
     var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
     var mTitleList : ArrayList<String> = arrayListOf()
+    var nickStr = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +41,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAdapter()
         setupEvents()
         setValues()
     }
@@ -45,13 +50,20 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun setValues() {
-        initAdapter()
         popularityList()
     }
 
     fun initAdapter() {
-        mTitleList.add("신상품순")
+        if(ContextUtil.getLoginToken(mContext) == ""){
+            mTitleList.add("이런 상품은 어떠세요 ?\n\n신상품순")
+        }else{
+            nickStr = GlobalData.loginUser!!.nickName + "님 "
+            mTitleList.add("${nickStr}이런 상품은 어떠세요 ?\n\n신상품순 ")
+        }
         mTitleList.add("인기순")
         mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList, mTitleList)
         mHomeAdapter.frag = this

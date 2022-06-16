@@ -56,10 +56,12 @@ class MyPageFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
-        Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
-        getPurchase()
-        getReview()
+        if (ContextUtil.getLoginToken(mContext) != "") {
+            myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
+            Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
+            getPurchase()
+            getReview()
+        }
     }
 
     override fun setupEvents() {
@@ -80,8 +82,10 @@ class MyPageFragment : BaseFragment() {
         initAdapter()
         popularityList()
         suggestionList()
-        getPurchase()
-        getReview()
+        if (ContextUtil.getLoginToken(mContext) == "") {
+            getPurchase()
+            getReview()
+        }
     }
 
     fun initAdapter() {
