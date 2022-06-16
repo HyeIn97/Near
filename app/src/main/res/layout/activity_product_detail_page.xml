@@ -43,8 +43,8 @@
             android:orientation="horizontal">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/storeProfileImg"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/profile_icon"/>
             <TextView
                 android:layout_marginStart="10dp"

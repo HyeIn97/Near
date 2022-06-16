@@ -26,7 +26,6 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
         val name = view.findViewById<TextView>(R.id.nameTxt)
         val price = view.findViewById<TextView>(R.id.priceTxt)
         fun bind(item : ProductData){
-        //받은데이터를 자리에 맞게 뿌려줘야함
             Glide.with(mContext).load(item.img).into(img)
             name.text = item.name
             price.text = item.price.toString() + " 원"

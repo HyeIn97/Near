@@ -32,17 +32,22 @@ class CartFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getData()
         initAdapter()
         setupEvents()
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getData()
+    }
     override fun setupEvents() {
 
     }
 
     override fun setValues() {
-        getData()
+
     }
 
     fun initAdapter(){
@@ -57,11 +62,12 @@ class CartFragment : BaseFragment() {
            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
-                    for(i in br.data.carts){
-                        mProductList.add(i.product)
-                    }
-                        Log.d("mProductList$$$$$$$4", mProductList.toString())
+                        mProductList.clear()
+                    Log.d("br.data.carts", br.data.carts.toString())
+                        mProductList.addAll(br.data.carts.map { it.product })
+                        Log.d("mProductList!!!!!!!!!!!!!!!!!!!!!!!!!~!~!~!~!~!", mProductList.toString())
                     mCartAdapter.notifyDataSetChanged()
+                    initAdapter()
                 }
            }
 

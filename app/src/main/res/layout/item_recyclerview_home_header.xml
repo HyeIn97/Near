@@ -49,14 +49,15 @@
 
                 <ImageView
                     android:id="@+id/foodBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:src="@drawable/food_icon" />
 
                 <TextView
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:text="식품"/>
             </LinearLayout>
             <LinearLayout
@@ -68,8 +69,8 @@
 
                 <ImageView
                     android:id="@+id/lifeBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:src="@drawable/life_icon" />
 
                 <TextView
@@ -77,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="생활"
+                    android:textSize="13sp"
                     android:layout_gravity="center"/>
             </LinearLayout>
             <LinearLayout
@@ -88,8 +90,8 @@
 
                 <ImageView
                     android:id="@+id/dressBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:src="@drawable/dress_icon" />
 
                 <TextView
@@ -97,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="의류"
+                    android:textSize="13sp"
                     android:layout_gravity="center"/>
             </LinearLayout>
             <LinearLayout
@@ -108,14 +111,15 @@
 
                 <ImageView
                     android:id="@+id/petBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:src="@drawable/pet_icon" />
 
                 <TextView
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:text="펫"
                     android:layout_gravity="center"/>
             </LinearLayout>

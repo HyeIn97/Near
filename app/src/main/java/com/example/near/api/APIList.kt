@@ -86,6 +86,9 @@ interface APIList {
     //장바구니 조회
     @GET("/cart")
     fun getCartList() : Call<BasicResponse>
+    //장바구니 삭제
+    @DELETE("/cart")
+    fun deleteCart(@Query("product_id") id : String) : Call<BasicResponse>
 
     //결제
     @FormUrlEncoded

@@ -1,16 +1,19 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.PaymentData
+import com.example.near.ui.review.WriteReviewActivity
 import java.text.SimpleDateFormat
 
 class PurchaseListRecyclerAdapter (val mContext : Context, val mList : ArrayList<PaymentData>) : RecyclerView.Adapter<PurchaseListRecyclerAdapter.ItemViewHolder>() {
@@ -26,6 +29,7 @@ class PurchaseListRecyclerAdapter (val mContext : Context, val mList : ArrayList
         val productName = view.findViewById<TextView>(R.id.productNameTxt)
         val price = view.findViewById<TextView>(R.id.priceTxt)
         val point = view.findViewById<TextView>(R.id.pointTxt)
+        val reviewBtn = view.findViewById<Button>(R.id.writeReviewBtn)
         fun bind(item : PaymentData){
             val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(item.date)
             val sdr = SimpleDateFormat("yy-MM-dd")
@@ -34,6 +38,12 @@ class PurchaseListRecyclerAdapter (val mContext : Context, val mList : ArrayList
             productName.text = item.subscription.product.name
             price.text = item.subscription.product.price.toString() + " 원"
             point.text = (item.subscription.product.price / 100).toString()
+
+            reviewBtn.setOnClickListener {
+                val myIntent = Intent(mContext, WriteReviewActivity::class.java)
+                myIntent.putExtra("data", item.subscription.product)
+                mContext.startActivity(myIntent)
+            }
         }
     }
 

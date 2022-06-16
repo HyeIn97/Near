@@ -26,11 +26,6 @@
             android:name=".ui.purchase.PurchaseCompleteActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Near.NoActionBar" />
-        <activity
             android:name=".ui.review.ReviewDetailPageActivity"
             android:exported="false" />
         <activity
@@ -56,9 +51,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.user.UserInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.product.ProductListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.FindPwActivity"

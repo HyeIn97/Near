@@ -1,5 +1,6 @@
 package com.example.near.ui.user
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -18,6 +19,8 @@ import com.example.near.ui.BaseActivity
 import com.example.near.ui.MainActivity
 import com.example.near.utils.GlobalData
 import com.example.near.utils.URIPathHelper
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -62,6 +65,24 @@ class ModifyActivity : BaseActivity() {
         }
         binding.modifyProfileBtn.setOnClickListener {
             //권한 확일 부분 필요
+            val pl = object : PermissionListener{
+                override fun onPermissionGranted() {
+                    val myIntent = Intent()
+                    myIntent.action = Intent.ACTION_PICK
+                    myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
+
+                    startForResult.launch(myIntent)
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                }
+            }
+            TedPermission.create()
+                .setPermissionListener(pl)
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                    테드 퍼미션이 지원하는 Denied 경우의 Alert
+                .setDeniedMessage("[설정] > [권한]에서 갤러리 권한을 열어주세요.")
+                .check()
         }
     }
 
@@ -82,6 +103,7 @@ class ModifyActivity : BaseActivity() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     val br = response.body()!!
+                    GlobalData.loginUser = response.body()!!.data.user
                     Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
                 }else{
                     val errorBodyStr = response.errorBody()!!.string()
@@ -121,7 +143,6 @@ class ModifyActivity : BaseActivity() {
         myIntent.putExtra("")
     }*/
 
-    fun data() {
         val startForResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == Activity.RESULT_OK) {
@@ -130,7 +151,7 @@ class ModifyActivity : BaseActivity() {
 
 //            data? => 이전 화면이 넘겨준 intent
 //            data?.data => 선택한 사진이 들어있는 경로 정보 (Uri)
-                    val dataUri = it.data?.data
+              val dataUri = it.data?.data
 
 //            Uri -> 이미지뷰의 사진 (GLide)
 //            Glide.with(mContext).load(dataUri).into(binding.profileImg)
@@ -150,20 +171,11 @@ class ModifyActivity : BaseActivity() {
                     )
 
                     apiList.putUserImg(body).enqueue(object : Callback<BasicResponse> {
-                        override fun onResponse(
-                            call: Call<BasicResponse>,
-                            response: Response<BasicResponse>
-                        ) {
+                        override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                             if (response.isSuccessful) {
-//                        1. 선택한 이미지로 UI 프사 변경
                                 GlobalData.loginUser = response.body()!!.data.user
-
-                                Glide.with(mContext).load(GlobalData.loginUser!!.profileImg)
-                                    .into(binding.userImg)
-
-//                        2. 토스트로 성공 메세지
-                                Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT)
-                                    .show()
+                                Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(binding.userImg)
+                                Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -174,5 +186,4 @@ class ModifyActivity : BaseActivity() {
                 }
             }
 
-    }
 }

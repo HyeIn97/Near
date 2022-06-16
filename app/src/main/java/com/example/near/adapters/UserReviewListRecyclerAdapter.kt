@@ -1,9 +1,11 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.PaymentData
 import com.example.near.models.ReviewData
+import com.example.near.ui.review.ReviewDetailPageActivity
 import java.text.SimpleDateFormat
 
 class UserReviewListRecyclerAdapter (val mContext : Context, val mList : ArrayList<ReviewData>) : RecyclerView.Adapter<UserReviewListRecyclerAdapter.ItemViewHolder>() {
@@ -26,6 +29,7 @@ class UserReviewListRecyclerAdapter (val mContext : Context, val mList : ArrayLi
         val productName = view.findViewById<TextView>(R.id.productNameTxt)
         val price = view.findViewById<TextView>(R.id.priceTxt)
         val point = view.findViewById<TextView>(R.id.pointTxt)
+        val reviewBtn = view.findViewById<Button>(R.id.showReviewBtn)
         fun bind(item : ReviewData){
             val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(item.date)
             val sdr = SimpleDateFormat("yy-MM-dd")
@@ -33,7 +37,13 @@ class UserReviewListRecyclerAdapter (val mContext : Context, val mList : ArrayLi
             Glide.with(mContext).load(item.product.img).into(product)
             productName.text = item.product.name
             price.text = item.product.price.toString() + " 원"
-            point.text = (item.product.price / 100).toString()
+            point.text = (item.product.price / 100).toString() + " 포인트 적립"
+
+            reviewBtn.setOnClickListener {
+                val myIntent = Intent(mContext, ReviewDetailPageActivity::class.java)
+                myIntent.putExtra("data", item)
+                mContext.startActivity(myIntent)
+            }
         }
     }
 

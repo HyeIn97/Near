@@ -5,18 +5,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.near.R
 import com.example.near.adapters.PurchaseRecyclerAdapter
 import com.example.near.databinding.ActivityPurchaseCompleteBinding
+import com.example.near.models.BasicResponse
 import com.example.near.models.PaymentData
 import com.example.near.models.ProductData
 import com.example.near.ui.BaseActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 
 class PurchaseCompleteActivity : BaseActivity() {
     lateinit var binding : ActivityPurchaseCompleteBinding
     lateinit var mPurshaseAdapter : PurchaseRecyclerAdapter
+    var mSubscriptionList: ArrayList<PaymentData> = arrayListOf()
     lateinit var data : PaymentData
     var mProductList : ArrayList<ProductData> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +33,7 @@ class PurchaseCompleteActivity : BaseActivity() {
         initAdapter()
         setUpEvents()
         setValues()
+        getPurchase()
     }
 
     override fun setUpEvents() {
@@ -37,7 +44,8 @@ class PurchaseCompleteActivity : BaseActivity() {
             finish()
         }
         binding.moreInformationBtn.setOnClickListener {
-            val myIntent = Intent(mContext, PurchaseCompleteActivity::class.java)
+            val myIntent = Intent(mContext, PurchaseListActivity::class.java)
+            myIntent.putExtra("data", mSubscriptionList)
             startActivity(myIntent)
             finish()
         }
@@ -59,5 +67,21 @@ class PurchaseCompleteActivity : BaseActivity() {
         mPurshaseAdapter = PurchaseRecyclerAdapter(mContext, mProductList)
         binding.purchaseCompleteRecyclerView.adapter = mPurshaseAdapter
         binding.purchaseCompleteRecyclerView.layoutManager = LinearLayoutManager(mContext)
+    }
+
+    fun getPurchase() {
+        apiList.getPaymentList().enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+                    val br = response.body()!!
+                    mSubscriptionList.clear()
+                    mSubscriptionList.addAll(br.data.payments)
+                    Log.d("mSubscriptionList@@@@@@@@", mSubscriptionList.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
     }
 }

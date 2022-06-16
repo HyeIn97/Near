@@ -24,6 +24,7 @@ class HomeFragment : BaseFragment() {
     var mPopProductList = ArrayList<ProductData>()
     var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
+    var mTitleList : ArrayList<String> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +51,9 @@ class HomeFragment : BaseFragment() {
     }
 
     fun initAdapter() {
-        mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList)
+        mTitleList.add("신상품순")
+        mTitleList.add("인기순")
+        mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList, mTitleList)
         mHomeAdapter.frag = this
         binding.homeRecyclerView.adapter = mHomeAdapter
         binding.homeRecyclerView.layoutManager = LinearLayoutManager(mContext)
@@ -68,7 +71,7 @@ class HomeFragment : BaseFragment() {
                     val reviews = br.data.reviews
                     Log.d("reviews_____", reviews.toString())
                     for(i in reviews){
-                        if (mPopProductList.size <= 2) {
+                        if (mPopProductList.size <= 6) {
                             mPopProductList.add(i.product)
                             Log.d("i.product____", i.product.toString())
                         }
@@ -108,7 +111,7 @@ class HomeFragment : BaseFragment() {
                     val br = response.body()!!
                     val product = br.data.products
                     for(i in product){
-                        if (mSugProductList.size <= 2) {
+                        if (mSugProductList.size <= 6) {
                             mSugProductList.add(i)
                         }
                     }

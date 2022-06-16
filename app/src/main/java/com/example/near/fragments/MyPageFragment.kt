@@ -26,13 +26,14 @@ import retrofit2.Response
 
 class MyPageFragment : BaseFragment() {
     val RESULT_OK = 1
-    lateinit var myPagebinding : FragmentMyPageBinding
-    lateinit var myPageAdapter : MyPageRecyclerAdapter
+    lateinit var myPagebinding: FragmentMyPageBinding
+    lateinit var myPageAdapter: MyPageRecyclerAdapter
     var mPopProductList = ArrayList<ProductData>()
     var mSugProductList = ArrayList<ProductData>()
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
-    var mSubscriptionList : ArrayList<PaymentData> = arrayListOf()
-    var mReivewList : ArrayList<ReviewData> = arrayListOf()
+    var mSubscriptionList: ArrayList<PaymentData> = arrayListOf()
+    var mReivewList: ArrayList<ReviewData> = arrayListOf()
+    var mTitleList : ArrayList<String> = arrayListOf()
     lateinit var myIntent: Intent
 
     override fun onCreateView(
@@ -40,7 +41,8 @@ class MyPageFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        myPagebinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
+        myPagebinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
         return myPagebinding.root
     }
 
@@ -50,6 +52,14 @@ class MyPageFragment : BaseFragment() {
         setValues()
         memberCheck()
         refresh(this, parentFragmentManager)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
+        Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
+        getPurchase()
+        getReview()
     }
 
     override fun setupEvents() {
@@ -75,14 +85,16 @@ class MyPageFragment : BaseFragment() {
     }
 
     fun initAdapter() {
-        myPageAdapter = MyPageRecyclerAdapter(mContext)
+        mTitleList.add("신상품순")
+        mTitleList.add("인기순")
+        myPageAdapter = MyPageRecyclerAdapter(mContext, mTitleList)
         myPageAdapter.frag = this
         myPagebinding.myPageRecyclerView.adapter = myPageAdapter
         myPagebinding.myPageRecyclerView.layoutManager = LinearLayoutManager(mContext)
     }
 
-    fun memberCheck(){
-        if(ContextUtil.getLoginToken(mContext) == ""){
+    fun memberCheck() {
+        if (ContextUtil.getLoginToken(mContext) == "") {
             ContextUtil.clear(mContext)
             myPagebinding.nonMemberLayout.visibility = View.VISIBLE
 
@@ -96,19 +108,19 @@ class MyPageFragment : BaseFragment() {
                 myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(myIntent)
             }
-        }else{
+        } else {
             myPagebinding.memberLayout.visibility = View.VISIBLE
-                myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
-                Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
-            apiList.getUserPoint().enqueue(object : Callback<BasicResponse>{
+            myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
+            Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(myPagebinding.profileImg)
+            apiList.getUserPoint().enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
                     var userPoint = 0
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         val br = response.body()!!
-                        for(i in br.data.point){
+                        for (i in br.data.point) {
                             userPoint += i.amount
                         }
                         myPagebinding.pointTxt.text = userPoint.toString() + "원"
@@ -130,7 +142,7 @@ class MyPageFragment : BaseFragment() {
                     mSugProductList.clear()
                     val br = response.body()!!
                     val reviews = br.data.reviews
-                    for(i in reviews){
+                    for (i in reviews) {
                         if (mPopProductList.size <= 2) {
                             mPopProductList.add(i.product)
                         }
@@ -151,7 +163,7 @@ class MyPageFragment : BaseFragment() {
                 if (response.isSuccessful) {
                     val br = response.body()!!
                     val product = br.data.products
-                    for(i in product){
+                    for (i in product) {
                         if (mSugProductList.size <= 2) {
                             mSugProductList.add(i)
                         }
@@ -167,25 +179,26 @@ class MyPageFragment : BaseFragment() {
         })
     }
 
-    fun refresh(fragment: Fragment, fragmentManager: FragmentManager){
+    fun refresh(fragment: Fragment, fragmentManager: FragmentManager) {
         var transaction = fragmentManager.beginTransaction()
         transaction.detach(this).attach(this).commit()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1){
-            if(resultCode == RESULT_OK){
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 myPagebinding.nickNmaeTxt.text = GlobalData.loginUser!!.nickName
             }
         }
     }
 
-    fun getPurchase(){
-        apiList.getPaymentList().enqueue(object : Callback<BasicResponse>{
+    fun getPurchase() {
+        apiList.getPaymentList().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val br = response.body()!!
+                    mSubscriptionList.clear()
                     mSubscriptionList.addAll(br.data.payments)
                     myPagebinding.purchaseCountTxt.text = mSubscriptionList.size.toString()
                 }
@@ -196,11 +209,12 @@ class MyPageFragment : BaseFragment() {
         })
     }
 
-    fun getReview(){
-        apiList.getUserReviewList().enqueue(object : Callback<BasicResponse>{
+    fun getReview() {
+        apiList.getUserReviewList().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val br = response.body()!!
+                    mReivewList.clear()
                     mReivewList.addAll(br.data.reviews)
                     myPagebinding.reviewCountTxt.text = mReivewList.size.toString()
                 }

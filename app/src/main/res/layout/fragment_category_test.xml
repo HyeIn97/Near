@@ -5,28 +5,89 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <ImageView
+        <LinearLayout
             android:id="@+id/foodBtn"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/food_icon"/>
-        <ImageView
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식품구독"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
             android:id="@+id/lifeBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/life_icon"
-            android:layout_marginTop="30dp"/>
-        <ImageView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/life_icon"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="생활구독"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
             android:id="@+id/dressBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/dress_icon"
-            android:layout_marginTop="30dp"/>
-        <ImageView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/dress_icon"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="의류구독"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
             android:id="@+id/petBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/pet_icon"
-            android:layout_marginTop="30dp"/>
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/pet_icon"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="애견구독"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

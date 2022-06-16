@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/productImg"
         android:scaleType="fitXY"
-        android:layout_width="95dp"
-        android:layout_height="95dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@mipmap/ic_launcher"/>
     <TextView
         android:id="@+id/nameTxt"
