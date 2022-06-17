@@ -2,6 +2,7 @@ package com.example.near.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,10 +49,11 @@ class MyPageFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAdapter()
         setupEvents()
         setValues()
         memberCheck()
-        refresh(this, parentFragmentManager)
+        //refresh(this, parentFragmentManager)
     }
 
     override fun onResume() {
@@ -62,6 +64,7 @@ class MyPageFragment : BaseFragment() {
             getPurchase()
             getReview()
         }
+            //popularityList() -> 얘떄문에 화면 다시 그려질때마다 리스트가 추가 됐던거임 ㅠ resume 화면 갱신용으로 함부로 쓰지 않기...ㅁ7ㅁ8
     }
 
     override fun setupEvents() {
@@ -79,9 +82,7 @@ class MyPageFragment : BaseFragment() {
     }
 
     override fun setValues() {
-        initAdapter()
         popularityList()
-        suggestionList()
         if (ContextUtil.getLoginToken(mContext) == "") {
             getPurchase()
             getReview()
@@ -92,9 +93,9 @@ class MyPageFragment : BaseFragment() {
         mTitleList.add("신상품순")
         mTitleList.add("인기순")
         myPageAdapter = MyPageRecyclerAdapter(mContext, mTitleList)
-        myPageAdapter.frag = this
+        //myPageAdapter.frag = this
         myPagebinding.myPageRecyclerView.adapter = myPageAdapter
-        myPagebinding.myPageRecyclerView.layoutManager = LinearLayoutManager(mContext)
+        myPagebinding.myPageRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
     }
 
     fun memberCheck() {
@@ -141,13 +142,13 @@ class MyPageFragment : BaseFragment() {
         apiList.getReviewRanking().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
+                    val br = response.body()!!
                     mTotalProductList.clear()
                     mPopProductList.clear()
                     mSugProductList.clear()
-                    val br = response.body()!!
                     val reviews = br.data.reviews
                     for (i in reviews) {
-                        if (mPopProductList.size <= 2) {
+                        if (mPopProductList.size <= 5) {
                             mPopProductList.add(i.product)
                         }
                     }
@@ -168,7 +169,7 @@ class MyPageFragment : BaseFragment() {
                     val br = response.body()!!
                     val product = br.data.products
                     for (i in product) {
-                        if (mSugProductList.size <= 2) {
+                        if (mSugProductList.size <= 5) {
                             mSugProductList.add(i)
                         }
                     }

@@ -17,49 +17,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="아이디"/>
         <EditText
+            android:layout_marginTop="15dp"
             android:id="@+id/emailEdt"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="이메일 입력"
+            android:hint="이메일"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:imeOptions="actionNext"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="비밀번호"/>
         <EditText
+            android:layout_marginTop="15dp"
             android:id="@+id/pwEdt"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="이메일 입력"
+            android:hint="비밀번호"
             android:inputType="textPassword"
             android:maxLines="1"
             android:imeOptions="actionDone"/>
-    </LinearLayout>
             <CheckBox
                 android:id="@+id/autoLoginCB"
                 android:layout_width="wrap_content"
@@ -68,6 +43,7 @@
                 android:textSize="14sp"
                 android:text="자동로그인"/>
             <TextView
+                android:textColor="@color/black"
                 android:layout_marginTop="40dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -107,6 +83,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/findIdBtn"
             android:gravity="center"
             android:layout_width="0dp"
@@ -118,6 +95,7 @@
             android:layout_height="wrap_content"
             android:text="|"/>
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/findPwBtn"
             android:gravity="center"
             android:layout_width="0dp"
@@ -130,7 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그인"
-        android:backgroundTint="@color/blue_55"
+        android:textStyle="bold"
         android:insetTop="0dp"
         android:insetBottom="0dp"/>
 </LinearLayout>

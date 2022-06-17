@@ -13,114 +13,68 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카드닉네임"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-            <EditText
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:text="지금 바로 카드 등록하고 \n간편 결제를 사용해 보세요 !" />
+        <LinearLayout
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <EditText
                 android:id="@+id/cardNickNameEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:layout_marginStart="10dp"
                 android:maxLines="1"
-                android:hint="카드 닉네임 입력"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카드번호"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:hint="카드 닉네임"/>
             <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/cardNumEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
-                android:layout_marginStart="10dp"
-                android:hint="카드번호 입력"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="유효기간"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:hint="카드번호"/>
             <EditText
                 android:id="@+id/cardPeriodEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
-                android:layout_marginStart="10dp"
-                android:hint="카드 유효기간 입력"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="생년월일"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="10dp"
+                android:hint="카드 유효기간   ex.mm/yy"/>
             <EditText
                 android:id="@+id/birthEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
-                android:layout_marginStart="10dp"
-                android:hint="생년월일 6자리 입력"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="패스워드"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="10dp"
+                android:hint="생년월일 6자리   ex.970809"/>
             <EditText
                 android:id="@+id/pwWordEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:layout_marginStart="10dp"
-                android:hint="패드워드 앞 2자리 입력"/>
+                android:layout_marginTop="10dp"
+                android:hint="패드워드 앞 2자리 입력  ex. **XX"/>
         </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
 
     <Button
         android:id="@+id/addBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="완료"
-        android:backgroundTint="@color/blue_55"
         android:insetTop="0dp"
+        android:textStyle="bold"
         android:insetBottom="0dp"/>
 </LinearLayout>
 </layout>

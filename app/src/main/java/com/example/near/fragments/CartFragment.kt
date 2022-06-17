@@ -63,9 +63,7 @@ class CartFragment : BaseFragment() {
                 if(response.isSuccessful){
                     val br = response.body()!!
                         mProductList.clear()
-                    Log.d("br.data.carts", br.data.carts.toString())
                         mProductList.addAll(br.data.carts.map { it.product })
-                        Log.d("mProductList!!!!!!!!!!!!!!!!!!!!!!!!!~!~!~!~!~!", mProductList.toString())
                     mCartAdapter.notifyDataSetChanged()
                     initAdapter()
                 }

@@ -13,24 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="지금바로 계정을 생성해보세요 !"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
         <EditText
             android:id="@+id/inputEmailEdt"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="이메일 입력"
+            android:hint="이메일"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:imeOptions="actionNext"/>
@@ -39,8 +42,7 @@
             android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="중복확인"
-            android:backgroundTint="@color/blue_55"/>
+            android:text="중복확인"/>
     </LinearLayout>
         <TextView
             android:id="@+id/checkEmailTxt"
@@ -48,50 +50,24 @@
             android:layout_height="wrap_content"
             android:text="아이디 중복 검사"
             android:textSize="12sp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비밀번호"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="18sp"/>
             <EditText
                 android:id="@+id/inputPwEdt"
-                android:layout_marginStart="10dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="비밀번호 입력"
+                android:hint="비밀번호"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:imeOptions="actionNext"/>
-        </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호 확인"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
         <EditText
             android:id="@+id/pwCheckEdt"
-            android:layout_marginStart="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 확인"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:imeOptions="actionNext"/>
-    </LinearLayout>
         <TextView
             android:id="@+id/checkPwTxt"
             android:layout_width="wrap_content"
@@ -103,16 +79,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="닉네임"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
         <EditText
             android:id="@+id/inputNickEdt"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -125,8 +94,7 @@
             android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="중복확인"
-            android:backgroundTint="@color/blue_55"/>
+            android:text="중복확인"/>
     </LinearLayout>
         <TextView
             android:id="@+id/checkNickTxt"
@@ -134,28 +102,15 @@
             android:layout_height="wrap_content"
             android:text="닉네임 중복 검사"
             android:textSize="12sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전화번호"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
         <EditText
             android:id="@+id/inputPhoneEdt"
-            android:layout_marginStart="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="전화번호 입력"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:imeOptions="actionNext"/>
-    </LinearLayout>
         <TextView
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
@@ -190,7 +145,7 @@
         android:id="@+id/signBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_55"
+        android:textStyle="bold"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="회원가입"/>

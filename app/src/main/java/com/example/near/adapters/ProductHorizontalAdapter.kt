@@ -29,7 +29,6 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
             Glide.with(mContext).load(item.img).into(img)
             name.text = item.name
             price.text = item.price.toString() + " 원"
-            Log.d("name.text", name.text.toString())
         }
     }
 
@@ -43,6 +42,7 @@ class ProductHorizontalAdapter(val mContext : Context, val mList : ArrayList<Pro
     }
 
     override fun getItemCount(): Int {
+        Log.d("가로 리스트 사이즈", mList.size.toString())
         return mList.size
     }
 

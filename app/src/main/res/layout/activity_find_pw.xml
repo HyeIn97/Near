@@ -10,63 +10,38 @@
         tools:context=".ui.user.FindPwActivity">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이메일"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
                 <EditText
                     android:id="@+id/emailEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:hint="이메일 입력"
                     android:inputType="textEmailAddress"
                     android:imeOptions="actionDone"
                     android:maxLines="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="닉네임"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/nickNameEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:hint="닉네임 입력"
                     android:imeOptions="actionNext"
                     android:maxLines="1" />
-            </LinearLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_55"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            android:textStyle="bold"
             android:text="로그인"/>
     </LinearLayout>
 </layout>

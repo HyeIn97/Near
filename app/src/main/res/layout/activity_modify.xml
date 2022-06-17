@@ -26,6 +26,8 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"/>
         <TextView
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -33,21 +35,23 @@
             android:text="프로필 사진 변경"/>
         </LinearLayout>
         <TextView
-            android:textSize="13dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:layout_marginTop="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이메일"/>
         <TextView
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="UserEamil"/>
         <TextView
-            android:textSize="13dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +62,7 @@
             android:orientation="horizontal">
         <EditText
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:id="@+id/userNickEdt"
             android:layout_width="0dp"
@@ -78,7 +82,8 @@
                 android:text="수정"/>
         </LinearLayout>
         <TextView
-            android:textSize="13dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,7 +94,7 @@
             android:orientation="horizontal">
         <EditText
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:id="@+id/userPhoneEdt"
             android:layout_width="0dp"
@@ -113,6 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="완료"
+        android:textStyle="bold"
         android:insetTop="0dp"
         android:insetBottom="0dp"/>
 </LinearLayout>

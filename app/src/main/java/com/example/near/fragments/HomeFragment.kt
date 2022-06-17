@@ -76,36 +76,15 @@ class HomeFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
                     val br = response.body()!!
-                    Log.d("br______", br.toString())
                     mTotalProductList.clear()
                     mPopProductList.clear()
                     mSugProductList.clear()
                     val reviews = br.data.reviews
-                    Log.d("reviews_____", reviews.toString())
                     for(i in reviews){
-                        if (mPopProductList.size <= 6) {
+                        if (mPopProductList.size <= 5) {
                             mPopProductList.add(i.product)
-                            Log.d("i.product____", i.product.toString())
                         }
                     }
-//                    for (i in br.data.reviews) {
-//                        val jsonObj = JSONObject(i.toString())
-//                        val product = jsonObj.getJSONObject("product")
-//                        val id = product.getInt("id")
-//                        val name = product.getString("name")
-//                        val price = product.getInt("price")
-//                        val img = product.getString("image_url")
-//                        val popList = ProductData(id, name, price, img)
-//                        if (mPopProductList.size <= 2) {
-//                            mPopProductList.add(popList)
-//                        }
-//                    }
-                    /*
-                        HomeListData().apply {
-                            homePopProduct.ProductList.addAll(mPopProductList)
-                            homePopProduct.type = "인기제품"
-//                        HomeData.setType = food
-                    }*/
                     mTotalProductList.add(mPopProductList)
                 }
                 suggestionList()
@@ -123,28 +102,11 @@ class HomeFragment : BaseFragment() {
                     val br = response.body()!!
                     val product = br.data.products
                     for(i in product){
-                        if (mSugProductList.size <= 6) {
+                        if (mSugProductList.size <= 5) {
                             mSugProductList.add(i)
                         }
                     }
-
-//                    for(i in product) {
-//                        val jsonObj = JSONObject(i.toString())
-//                        val id = jsonObj.getInt("id")
-//                        val name = jsonObj.getString("name")
-//                        val price = jsonObj.getInt("price")
-//                        val img = jsonObj.getString("image_url")
-//                        val sugList = ProductData(id, name, price, img)
-//                        if (mSugProductList.size <= 2) {
-//                            mSugProductList.add(sugList)
-//                        }
-//                    }
                 }
-                /*
-                HomeListData().apply {
-                    homeSugProductList.ProductList.addAll(mSugProductList)
-                    homeSugProductList.type = "신상품"
-                }*/
                 mTotalProductList.add(mSugProductList)
             }
 

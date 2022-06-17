@@ -14,12 +14,12 @@
         android:layout_margin="20dp"
         android:orientation="vertical">
     <TextView
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="정상적으로 결제 되었습니다."/>
+        android:text="주문이 완료 되었습니다."/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/purchaseCompleteRecyclerView"
         android:layout_marginTop="20dp"
@@ -31,15 +31,15 @@
             android:id="@+id/purchaseDateTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
             android:text="날짜"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <TextView
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,21 +50,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="결제 금액"/>
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:id="@+id/priceTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="n"/>
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,21 +76,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="포인트 적립금"/>
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:id="@+id/pointTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="n"/>
             <TextView
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,9 +104,12 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/toShopBtn"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightGray"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text = "쇼핑하기"
             android:insetTop="0dp"
             android:insetBottom="0dp"/>
@@ -114,6 +117,7 @@
             android:id="@+id/moreInformationBtn"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="구독목록보기"
             android:insetTop="0dp"

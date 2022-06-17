@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.near.R
 import com.example.near.adapters.SmallCategoryRecyclerAdapter
 import com.example.near.databinding.FragmentHomeBinding
+import com.example.near.databinding.FragmentSmallCategoryBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.ProductData
 import com.example.near.models.StoreData
@@ -22,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SmallCategoryFragment(val smallId : Int) : BaseFragment() {
-    lateinit var binding : FragmentHomeBinding
+    lateinit var binding : FragmentSmallCategoryBinding
     lateinit var mSmallCategoryAdapter : SmallCategoryRecyclerAdapter
     val mProductList = ArrayList<ProductData>()
     val mDetailData = ArrayList<ProductData>()
@@ -31,7 +32,7 @@ class SmallCategoryFragment(val smallId : Int) : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_small_category, container, false)
         return binding.root
     }
 
@@ -60,8 +61,8 @@ class SmallCategoryFragment(val smallId : Int) : BaseFragment() {
                 startActivity(myIntent)
             }
         })
-        binding.homeRecyclerView.adapter = mSmallCategoryAdapter
-        binding.homeRecyclerView.layoutManager = GridLayoutManager(mContext, 3)
+        binding.smallCategoryRecyclerView.adapter = mSmallCategoryAdapter
+        binding.smallCategoryRecyclerView.layoutManager = GridLayoutManager(mContext, 2)
     }
 
     fun getData(){
@@ -81,13 +82,13 @@ class SmallCategoryFragment(val smallId : Int) : BaseFragment() {
                         null))
                     mProductList.add(ProductData(101, "노시환", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
                     mProductList.add(ProductData(101, "문동주", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
-                    mProductList.add(ProductData(101, "정은원", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "하주석", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "김인환", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "박정현", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "강재민", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "이민우", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
-                    mProductList.add(ProductData(101, "김민우", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", null, null))
+                    mProductList.add(ProductData(101, "정은원", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "하주석", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "김인환", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "박정현", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "강재민", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "이민우", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
+                    mProductList.add(ProductData(101, "김민우", 30000, "https://pds.joins.com/news/component/htmlphoto_mmdata/201501/08/htm_20150108173856c010c011.jpg", StoreData(1, "2번 가게", "https://s3.ap-northeast-2.amazonaws.com/gudocin-images/https://catholicoutlook.org/wp-content/uploads/2020/03/To-clothe-the-naked-lauren-fleischmann-R2aodqJn3b8-unsplash-A.jpg?w=640\\r\\n"), null))
                     Log.d("mProductList_____!!!!!!", mProductList.toString())
                     mSmallCategoryAdapter.notifyDataSetChanged()
                 }else{

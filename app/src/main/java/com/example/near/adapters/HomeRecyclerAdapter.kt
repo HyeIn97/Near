@@ -25,8 +25,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 //메인홈 페이지 리싸이클러뷰
-class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>, val mTitleList : ArrayList<String>) : /*ArrayList<ArrayList<ProductData>>*/
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>, val mTitleList : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val HEADER = 0
     val ITEM = 1
     lateinit var frag: Fragment
@@ -93,11 +92,9 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     inner class ItemViewHolder(val itemBinding: ItemHomeListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun itemBind(items:ArrayList<ProductData>){
-//            val titleList : ArrayList<String> = arrayListOf()
-//            titleList.add("신상품순")
-//            titleList.add("인기순")
             itemBinding.titleTxt.text = mTitleList[position-1]
-            Log.d("items",items.toString())
+            Log.d("홈에서 items:ArrayList<ProductData>",items.toString())
+            Log.d("홈에서 items:ArrayList<ProductData> 사이즈",items.size.toString())
             val horizonAdapter = ProductHorizontalAdapter(mContext, items)
             horizonAdapter.setItemClickListener(object : ProductHorizontalAdapter.ItemClickListener{
                 override fun onItemClick(position: Int) {
@@ -123,7 +120,6 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
     }
 
     override fun getItemCount(): Int {
-        //val itemCount = mProductList.homePopProduct.mPopProductList.size + mProductList.mSugProductList.size + 1
         return mProductList.size + 1
     }
 

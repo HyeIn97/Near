@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.near.R
 import com.example.near.models.ProductData
+import org.w3c.dom.Text
 
 //소분류 Grid 사용해 정렬
 class SmallCategoryRecyclerAdapter(val mContext: Context, val mList: ArrayList<ProductData>) :
@@ -43,10 +44,12 @@ class SmallCategoryRecyclerAdapter(val mContext: Context, val mList: ArrayList<P
         val img = view.findViewById<ImageView>(R.id.productImg)
         val name = view.findViewById<TextView>(R.id.nameTxt)
         val price = view.findViewById<TextView>(R.id.priceTxt)
+        val storeName = view.findViewById<TextView>(R.id.storeNameTxt)
         fun bind(item: ProductData) {
             Glide.with(mContext).load(item.img).into(img)
             name.text = item.name
             price.text = item.price.toString() + " 원"
+            storeName.text = item.store!!.name
             Log.d("왜 item__________", item.toString())
 
 //            itemView.setOnClickListener {

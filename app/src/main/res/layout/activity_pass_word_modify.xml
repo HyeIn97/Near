@@ -8,20 +8,13 @@
     android:orientation="vertical"
     tools:context=".ui.user.PassWordModifyActivity">
     <LinearLayout
+        android:gravity="center"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="기존 비밀번호"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
             <EditText
-                android:layout_marginTop="5dp"
                 android:id="@+id/currentPwEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,31 +22,17 @@
                 android:maxLines="1"
                 android:inputType="textPassword"
                 android:hint="기존 비밀번호를 입력해주세요."/>
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="신규 비밀번호"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
         <EditText
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/newPwEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
             android:maxLines="1"
             android:inputType="textPassword"
-            android:hint="수정할 비밀번호를 입력해주세요."/>
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="신규 비밀번호 확인"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:hint="수정 할 비밀번호를 입력해주세요."/>
         <EditText
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/newPwCkEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,8 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="완료"
-        android:backgroundTint="@color/blue_55"
         android:insetTop="0dp"
+        android:textStyle="bold"
         android:insetBottom="0dp"/>
 </LinearLayout>
 </layout>
