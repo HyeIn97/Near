@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable-v24/custom_button.xml" value="0.194" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.1" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/button_selector.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_button.xml" value="0.1045" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_button.xml" value="0.194" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r6.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r8.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/menu_selector_color.xml" value="0.1" />
@@ -55,6 +58,7 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_category.xml" value="0.16018518518518518" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_grid_product.xml" value="0.4" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_home_list.xml" value="0.2" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_lage_cartegory.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_large_category.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product.xml" value="0.4" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_header.xml" value="0.25364583333333335" />

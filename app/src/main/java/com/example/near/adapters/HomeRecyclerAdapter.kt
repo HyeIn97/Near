@@ -93,8 +93,6 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
         RecyclerView.ViewHolder(itemBinding.root) {
         fun itemBind(items:ArrayList<ProductData>){
             itemBinding.titleTxt.text = mTitleList[position-1]
-            Log.d("홈에서 items:ArrayList<ProductData>",items.toString())
-            Log.d("홈에서 items:ArrayList<ProductData> 사이즈",items.size.toString())
             val horizonAdapter = ProductHorizontalAdapter(mContext, items)
             horizonAdapter.setItemClickListener(object : ProductHorizontalAdapter.ItemClickListener{
                 override fun onItemClick(position: Int) {

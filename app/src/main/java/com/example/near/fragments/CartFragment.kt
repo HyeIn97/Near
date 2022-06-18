@@ -1,5 +1,6 @@
 package com.example.near.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import com.example.near.databinding.FragmentCartBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.CartData
 import com.example.near.models.ProductData
+import com.example.near.ui.user.LoginActivity
+import com.example.near.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,11 +46,18 @@ class CartFragment : BaseFragment() {
         getData()
     }
     override fun setupEvents() {
-
+        binding.loginBtn.setOnClickListener {
+            val myIntent = Intent(mContext, LoginActivity::class.java)
+            startActivity(myIntent)
+        }
     }
 
     override fun setValues() {
-
+        if(ContextUtil.getLoginToken(mContext) == ""){
+            binding.nonMemberLayout.visibility = View.VISIBLE
+        }else{
+            binding.cartRecyclerView.visibility = View.VISIBLE
+        }
     }
 
     fun initAdapter(){

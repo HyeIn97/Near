@@ -1,80 +1,79 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.os.Build
+import android.util.Log
+import android.util.SparseArray
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.near.databinding.ItemCategoryBinding
-import com.example.near.databinding.ItemSamllCategoryListBinding
+import com.example.near.R
 import com.example.near.models.LageCategoryData
 
-class CategoryRecyclerAdapter(val mContext : Context, val mList : ArrayList<LageCategoryData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    val LAGECATEGORIE = 0
-    val ITEMLIST = 1
-    //val SMALLCATEGORIE = 2
-    lateinit var frg : Fragment
+class CategoryRecyclerAdapter(val mContext : Context, val mList : ArrayList<LageCategoryData>) : RecyclerView.Adapter<CategoryRecyclerAdapter.ItemViewHolder>(){
+   lateinit var subRecyclerAdapter : CategorySubRecyclerAdapter
+   var sparseArray = SparseArray<Boolean>() //ture일때 smallTitle == VISIBLE, false일때 smallTitle == GONE
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType){
-            LAGECATEGORIE -> {
-                LagecategoryViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(mContext), parent, false))
+    inner class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view){
+        val lageLayout = view.findViewById<LinearLayout>(R.id.lageCategoryLayout) //대분류 레이아웃
+        val lageImg = view.findViewById<ImageView>(R.id.lageCategoryImg)
+        val lageTitle = view.findViewById<TextView>(R.id.LageCategoryTitleTxt)
+        val smallTitle = view.findViewById<RecyclerView>(R.id.smallCategoryListRecyclerView) //대분류 아래 나올 소분류 recyclerView (visibility = gone)
+        val nonClick = view.findViewById<ImageView>(R.id.nonClickBtn)
+        val click = view.findViewById<ImageView>(R.id.clickBtn)
+
+        @RequiresApi(Build.VERSION_CODES.S)
+        fun bind(item: LageCategoryData){
+            if(sparseArray[adapterPosition] == null){
+                sparseArray.put(adapterPosition, false) //smallTitle 다 gone 이기 때문에 false로 list 만들어줌
             }
-            else -> {
-                ItemListViewHolder(ItemSamllCategoryListBinding.inflate(LayoutInflater.from(mContext), parent, false))
+
+            lageTitle.text = item.name
+
+            lageLayout.setOnClickListener { //대분류 눌렀을 때
+                when(smallTitle.visibility){
+                    View.VISIBLE -> {
+                        sparseArray[adapterPosition] = false
+                        smallTitle.visibility = View.GONE
+                        click.visibility = View.GONE
+                        nonClick.visibility = View.VISIBLE
+
+                        Log.d("sparseArray__________-", sparseArray.toString())
+                    }
+                    View.GONE -> {
+                        sparseArray[adapterPosition] = true
+                        smallTitle.visibility = View.VISIBLE
+                        click.visibility = View.VISIBLE
+                        nonClick.visibility = View.GONE
+
+                        Log.d("sparseArray__________-", sparseArray.toString())
+                    }
+                }
             }
-//            else ->{
-//                SmallcategoryViewHolder(ItemSmallCategoriesBinding.inflate(LayoutInflater.from(mContext), parent, false))
-//            }
         }
+   }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val row = LayoutInflater.from(mContext).inflate(R.layout.item_lage_cartegory, parent, false)
+        return ItemViewHolder(row)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is LagecategoryViewHolder -> {
-                holder.headerBind(mList[position])
-            }
-            is ItemListViewHolder -> {
-                holder.itemBind(mList[position])
-            }
-            //is SmallcategoryViewHolder -> {}
-        }
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        holder.bind(mList[position])
+        subRecyclerAdapter = CategorySubRecyclerAdapter(mContext, mList[position].smallCategory, mList[position])
+        holder.smallTitle.adapter = subRecyclerAdapter
+        holder.smallTitle.layoutManager = GridLayoutManager(mContext, 2)
     }
 
     override fun getItemCount(): Int {
         return mList.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when(position){
-            0 -> LAGECATEGORIE
-            else -> ITEMLIST
-            //else -> SMALLCATEGORIE
-        }
-    }
-
-    inner class LagecategoryViewHolder(val headerBinding : ItemCategoryBinding) : RecyclerView.ViewHolder(headerBinding.root) {
-        fun headerBind(item : LageCategoryData){
-
-        }
-    }
-
-    inner class ItemListViewHolder(val itemListBinding : ItemSamllCategoryListBinding) : RecyclerView.ViewHolder(itemListBinding.root){
-        fun itemBind(items: LageCategoryData){
-            val horizontalAdapter = CategoryHorizontalAdapter(mContext, items)
-            itemListBinding.smallCGTitleRecyclerView.adapter = horizontalAdapter
-            itemListBinding.smallCGTitleRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-        }
-    }
-
-//    inner class SmallcategoryViewHolder(val smallBinding : ItemSmallCategoriesBinding) : RecyclerView.ViewHolder(smallBinding.root){
-//        fun smallBind(items: ArrayList<LageCategoriesData>){
-//            val horizontalAdapter = CategoryHorizontalAdapter(mContext, items)
-//
-//        }
-//    }
-    fun addData(list: ArrayList<LageCategoryData>){
-        this.mList.addAll(list)
-    }
 }
