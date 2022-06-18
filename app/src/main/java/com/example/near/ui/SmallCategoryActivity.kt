@@ -64,12 +64,11 @@ class SmallCategoryActivity : BaseActivity() {
         cartBtn.visibility = View.VISIBLE
 
         //val smallList = list.smallCategory
-        val smallList = data
         mSmallCategoryAdapter = SmallCategoryAdapter(this, data)
         binding.smallCategoryViewPager.adapter = mSmallCategoryAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.smallCategoryViewPager) { tab, positon ->
-            tab.text = smallList[positon].name
+            tab.text = data[positon].name
         }.attach()
 
     }

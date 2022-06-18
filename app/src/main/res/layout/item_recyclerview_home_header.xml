@@ -6,7 +6,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <ViewFlipper
             android:id="@+id/bannerFlipper"
             android:layout_width="match_parent"
@@ -130,5 +129,21 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/lightGray"/>
+        <LinearLayout
+            android:id="@+id/homeLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:clipToPadding="false"
+            android:id="@+id/homeCategoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/lightGray"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

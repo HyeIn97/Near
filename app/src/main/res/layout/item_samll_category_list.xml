@@ -7,16 +7,26 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
         <TextView
+            android:visibility="gone"
             android:id="@+id/smallTitleTxt"
-            android:gravity="center"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="소분류이름"/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/homeSmallTitleTxt"
+                android:background="@drawable/custom_edit_r0"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="소분류이름"/>
         </LinearLayout>
     </GridLayout>
 </layout>

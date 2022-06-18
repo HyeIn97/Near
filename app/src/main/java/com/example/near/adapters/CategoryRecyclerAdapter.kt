@@ -44,15 +44,12 @@ class CategoryRecyclerAdapter(val mContext : Context, val mList : ArrayList<Lage
                         click.visibility = View.GONE
                         nonClick.visibility = View.VISIBLE
 
-                        Log.d("sparseArray__________-", sparseArray.toString())
                     }
                     View.GONE -> {
                         sparseArray[adapterPosition] = true
                         smallTitle.visibility = View.VISIBLE
                         click.visibility = View.VISIBLE
                         nonClick.visibility = View.GONE
-
-                        Log.d("sparseArray__________-", sparseArray.toString())
                     }
                 }
             }
@@ -68,6 +65,7 @@ class CategoryRecyclerAdapter(val mContext : Context, val mList : ArrayList<Lage
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(mList[position])
         subRecyclerAdapter = CategorySubRecyclerAdapter(mContext, mList[position].smallCategory, mList[position])
+        Log.d("닌 뭐길래 가능함? mList", mList.toString())
         holder.smallTitle.adapter = subRecyclerAdapter
         holder.smallTitle.layoutManager = GridLayoutManager(mContext, 2)
     }

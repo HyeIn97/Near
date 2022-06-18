@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,14 +28,14 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 //메인홈 페이지 리싸이클러뷰
-class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>, val mTitleList : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<ArrayList<ProductData>>, val mTitleList : ArrayList<String>, val mLageTitleList : ArrayList<LageCategoryData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val HEADER = 0
     val ITEM = 1
     lateinit var frag: Fragment
     lateinit var apiList : APIList
     lateinit var retrofit : Retrofit
-    val mLageCategoryList = ArrayList<LageCategoryData>()
-
+    //val mLageCategoryList : ArrayList<LageCategoryData> = arrayListOf()
+    lateinit var homeCategoryAdapter : HomeCategoryRecyclerAdapter
 
     inner class HeaderViewHolder(val headerBinding: ItemRecyclerviewHomeHeaderBinding) :
         RecyclerView.ViewHolder(headerBinding.root) {
@@ -72,21 +75,31 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
 
             })
 
-            getData()
-
             headerBinding.foodBtn.setOnClickListener {
-                category(0)
+                initAdapter(mLageTitleList[0])
             }
             headerBinding.dressBtn.setOnClickListener {
-                category(1)
+                initAdapter(mLageTitleList[1])
             }
             headerBinding.lifeBtn.setOnClickListener {
-                category(2)
+                initAdapter(mLageTitleList[2])
             }
             headerBinding.petBtn.setOnClickListener {
-                category(3)
             }
         }
+
+        fun initAdapter(item : LageCategoryData){
+            if(headerBinding.homeLayout.visibility == View.VISIBLE){
+                headerBinding.homeLayout.visibility = View.GONE
+            }else{
+                headerBinding.homeLayout.visibility = View.VISIBLE
+                homeCategoryAdapter = HomeCategoryRecyclerAdapter(mContext, item, item.smallCategory)
+                headerBinding.homeCategoryRecyclerView.adapter = homeCategoryAdapter
+                headerBinding.homeCategoryRecyclerView.layoutManager = GridLayoutManager(mContext, 3)
+                homeCategoryAdapter.notifyDataSetChanged()
+            }
+        }
+
     }
 
     inner class ItemViewHolder(val itemBinding: ItemHomeListBinding) :
@@ -132,6 +145,11 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
         when (holder) {
             is HeaderViewHolder -> {
                 holder.headerBindPage()
+                //Log.d("position", position.toString())
+//                homeCategoryAdapter = HomeCategoryRecyclerAdapter(mContext, mLageTitleList[position], mLageTitleList[position].smallCategory)
+//                holder.headerBinding.homeCategoryRecyclerView.adapter = homeCategoryAdapter
+//                holder.headerBinding.homeCategoryRecyclerView.layoutManager = GridLayoutManager(mContext, 3)
+                //getData()
             }
             is ItemViewHolder -> {
                 holder.itemBind(mProductList[position-1])
@@ -139,27 +157,30 @@ class HomeRecyclerAdapter(val mContext: Context, val mProductList: ArrayList<Arr
         }
     }
 
-    fun category(item : Int){
-        val list = mLageCategoryList[item]
-        val myIntent = Intent(mContext, SmallCategoryActivity::class.java)
-        myIntent.putExtra("list", list)
-        mContext.startActivity(myIntent)
-    }
+//    fun category(item : Int){
+//        val list = mLageCategoryList[item]
+//        val myIntent = Intent(mContext, SmallCategoryActivity::class.java)
+//        myIntent.putExtra("list", list)
+//        mContext.startActivity(myIntent)
+//    }
 
-    fun getData(){
-        apiList.getAllCategory().enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
-                    mLageCategoryList.clear()
-                    val br = response.body()!!
-                    val category = br.data.categories
-                    mLageCategoryList.addAll(category)
-                }
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-            }
-        })
-    }
+//    fun getData(){
+//        apiList.getAllCategory().enqueue(object : Callback<BasicResponse>{
+//            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+//                if(response.isSuccessful){
+//                    mLageCategoryList.clear()
+//                    val br = response.body()!!
+//                    val category = br.data.categories
+//                    mLageCategoryList.addAll(category)
+//                    Log.d("mLageCategoryListmLageCategoryListmLageCategoryListmLageCa", mLageCategoryList.toString())
+//                    homeCategoryAdapter.addData(mLageCategoryList[0], mLageCategoryList[0].smallCategory)
+//                    homeCategoryAdapter.notifyDataSetChanged()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+//            }
+//        })
+//    }
 
 }

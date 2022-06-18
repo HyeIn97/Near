@@ -13,6 +13,7 @@ import com.example.near.adapters.HomeRecyclerAdapter
 import com.example.near.databinding.FragmentHomeBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.HomeListData
+import com.example.near.models.LageCategoryData
 import com.example.near.models.ProductData
 import com.example.near.utils.ContextUtil
 import com.example.near.utils.GlobalData
@@ -29,6 +30,7 @@ class HomeFragment : BaseFragment() {
     var mTotalProductList = ArrayList<ArrayList<ProductData>>()
     var mTitleList : ArrayList<String> = arrayListOf()
     var nickStr = ""
+    val mLageCategoryList : ArrayList<LageCategoryData> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +57,7 @@ class HomeFragment : BaseFragment() {
     }
     override fun setValues() {
         popularityList()
+        getData()
     }
 
     fun initAdapter() {
@@ -65,7 +68,7 @@ class HomeFragment : BaseFragment() {
             mTitleList.add("${nickStr}이런 상품은 어떠세요 ?\n\n신상품순 ")
         }
         mTitleList.add("인기순")
-        mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList, mTitleList)
+        mHomeAdapter = HomeRecyclerAdapter(mContext, mTotalProductList, mTitleList, mLageCategoryList) //시이발 ~~ 걍 여기서 받아오자구 ~~~
         mHomeAdapter.frag = this
         binding.homeRecyclerView.adapter = mHomeAdapter
         binding.homeRecyclerView.layoutManager = LinearLayoutManager(mContext)
@@ -108,6 +111,23 @@ class HomeFragment : BaseFragment() {
                     }
                 }
                 mTotalProductList.add(mSugProductList)
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    fun getData(){
+        apiList.getAllCategory().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    mLageCategoryList.clear()
+                    val br = response.body()!!
+                    val category = br.data.categories
+                    mLageCategoryList.addAll(category)
+                    Log.d("mLageCategoryListmLageCategoryListmLageCategoryListmLageCa", mLageCategoryList.toString())
+                }
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
