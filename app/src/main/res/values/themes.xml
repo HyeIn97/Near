@@ -29,6 +29,7 @@
     <style name="Theme.Near.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Near.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="Theme.Near.Splash">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

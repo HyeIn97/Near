@@ -106,4 +106,7 @@ interface APIList {
     @FormUrlEncoded
     @POST("/review")
     fun postReviewSave(@Field("product_id")id : String, @Field("title") title: String, @Field("content")content : String, @Field("score")score : Float, @Field("tag_list")tag: String, @Field("thumbnail_img")thumbnailImg : String?, @Field("review_images") reviewImg : String?) : Call<BasicResponse>
+    //모든리뷰 조회(최근순)
+    @GET("/review")
+    fun getAllReview() : Call<BasicResponse>
 }

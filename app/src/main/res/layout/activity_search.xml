@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".SearchActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/inputSearchEdt"
+        android:drawableLeft="@drawable/search_icon"
+        android:textSize="15sp"
+        android:background="@drawable/custom_edit_r8"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:layout_height="40dp"
+        android:hint="검색어를 입력하세요."/>
+        <TextView
+            android:id="@+id/searchBtn"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:text="검색"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="최근 검색어"/>
+        <TextView
+            android:id="@+id/searchDelBtn"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기록 삭제"/>
+    </LinearLayout>
+    <TextView
+        android:visibility="gone"
+        android:gravity="center|start"
+        android:id="@+id/nonLatelySearchTxt"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="최근 검색 내역이 없습니다."/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/latelySearchRecyclerView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="인기 검색어"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layoutAnimation="@anim/anim_slide"
+        android:id="@+id/popSearchRecyclerView"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+</layout>

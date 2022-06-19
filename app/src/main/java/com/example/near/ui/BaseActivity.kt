@@ -1,8 +1,10 @@
 package com.example.near.ui
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TableLayout
@@ -11,12 +13,16 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
+import com.example.near.DBHelper
 import com.example.near.R
 import com.example.near.api.APIList
 import com.example.near.api.ServerAPI
+import com.example.near.fragments.HomeFragment
 import retrofit2.Retrofit
 
 abstract class BaseActivity : AppCompatActivity() {
+    val CARTFRAGMENT = "cart"
+    val MAINFRAGMENT = "main"
     lateinit var mContext : Context
     lateinit var apiList : APIList
     lateinit var retrofit : Retrofit
@@ -32,6 +38,9 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var nickNameTxt : TextView
     lateinit var userImg : ImageView
 
+    lateinit var dbHelpler : DBHelper
+    lateinit var database : SQLiteDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
@@ -40,6 +49,8 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         retrofit = ServerAPI.getRetrofit(mContext)
         apiList = retrofit.create(APIList::class.java)
+        dbHelpler = DBHelper(mContext, "near.db", null, 1)
+        database = dbHelpler.writableDatabase
     }
 
     abstract fun setUpEvents()
@@ -64,5 +75,18 @@ abstract class BaseActivity : AppCompatActivity() {
         userImg = defActionBar.customView.findViewById(R.id.userImg)
         nickNameTxt = defActionBar.customView.findViewById(R.id.nickNameTxt)
 
+    }
+
+    fun setFragment(value : String){
+        val transaction = supportFragmentManager.beginTransaction()
+        when(value){
+            "home" -> {
+                Log.d("타긴하는거?", "웅애 액티비티")
+                transaction.replace(R.id.homeFrameLayout, HomeFragment()).commit()
+            }
+            CARTFRAGMENT -> {
+
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_button.xml" value="0.1045" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_button.xml" value="0.194" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r0.xml" value="0.1905" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r20.xml" value="0.1305" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r6.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/custom_edit_r8.xml" value="0.1" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/drawable/menu_selector_color.xml" value="0.1" />
@@ -28,6 +29,9 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_purchase_detail_page.xml" value="0.1259259259259259" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_purchase_list.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_review_detail_page.xml" value="0.2" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_search.xml" value="0.264" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_search_results.xml" value="0.264" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_searh.xml" value="0.14814814814814814" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_setting.xml" value="0.264" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_sign.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_small_category.xml" value="0.1" />
@@ -37,6 +41,7 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_write_reivew.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/activity_write_review.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/content_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/content_search_results.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/custom_action_bar.xml" value="0.264" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/custom_alert_dialog.xml" value="0.264" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/drawer_navi_header.xml" value="0.25364583333333335" />
@@ -62,6 +67,8 @@
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_home_list.xml" value="0.2" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_lage_cartegory.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_large_category.xml" value="0.2" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_lately_search.xml" value="0.8800000000000001" />
+        <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_popular_search.xml" value="0.406" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product.xml" value="0.4" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_header.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HYEIN/AndroidStudioProjects/Near/app/src/main/res/layout/item_product_detail_review.xml" value="0.2" />
@@ -85,6 +92,9 @@
         <entry key="..\:/Users/NePPPlus_014/AndroidStudioProjects/Near/app/src/main/res/layout/item_recyclerview_main_header.xml" value="0.25" />
       </map>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/near/FirstFragment.kt" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

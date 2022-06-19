@@ -41,7 +41,9 @@ class SmallCategoryActivity : BaseActivity() {
             finish()
         }
         homeBtn.setOnClickListener {
-            //프래그먼트 이동으로 해야됨
+            finish()
+            //setFragment("home")
+            Log.d("타긴하는거?", "웅애 소분류")
         }
         cartBtn.setOnClickListener {
             myIntent = Intent(mContext, CartFragment::class.java)

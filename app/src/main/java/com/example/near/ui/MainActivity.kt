@@ -10,10 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.viewpager2.widget.ViewPager2
 import com.example.near.ui.Payment.EasyPaymentActivity
 import com.example.near.ui.user.PassWordModifyActivity
 import com.example.near.R
+import com.example.near.SearchActivity
 import com.example.near.adapters.MainViewPagerAtapter
 import com.example.near.ui.user.UserInfoActivity
 import com.example.near.databinding.ActivityMainBinding
@@ -43,10 +45,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun setUpEvents() {
         settingBtn.setOnClickListener {
             initdrawerSetting()
             //refreshFragment(this, ft)
+        }
+        searchBtn.setOnClickListener {
+            val myIntnet = Intent(mContext, SearchActivity::class.java)
+            startActivity(myIntnet)
         }
     }
 
