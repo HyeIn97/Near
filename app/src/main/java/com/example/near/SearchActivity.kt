@@ -95,22 +95,20 @@ class SearchActivity : BaseActivity() {
                     mProdcutList.clear()
                     val br = response.body()!!
                     val reviews = br.data.reviews
-//                    for(i in reviews){
-//                                if(mProdcutList.size < 10) {
-//                                    mProdcutList.add(i.product)
-//                        }
-//                   }
-
-                    for(i in reviews){
-                    while (true){
-                            if(!mProdcutList.contains(i.product)){
-                                if(mProdcutList.size < 10){
-                                    mProdcutList.add(i.product)
-                                    break
+                    //최신 리뷰가 올라온 리스트로 인기 검색어 구성해놨음 -> 추후 디비 이용해서 가장 많이 검색한 걸로 변경하면 좋을듯
+                    for(i in 0 until reviews.size){
+                            for(pd in reviews) {
+                                if (!mProdcutList.contains(pd.product)) {
+                                    if (mProdcutList.size < 10) {
+                                        mProdcutList.add(pd.product)
+                                        break
+                                    }
+                                    Log.d(
+                                        "mProdcutListmProdcutListmProdcutList",
+                                        mProdcutList.toString()
+                                    )
                                 }
-                                Log.d("mProdcutListmProdcutListmProdcutList", mProdcutList.toString())
                             }
-                        }
                     }
                     mSearchRakingAdapter.notifyDataSetChanged()
                 }
@@ -150,5 +148,7 @@ class SearchActivity : BaseActivity() {
         }
         mSearchWordList.reverse()
         mSearchLatelyAdapter.notifyDataSetChanged()
+
+        Log.d("mSearchWordList",mSearchWordList.toString())
     }
 }

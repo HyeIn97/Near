@@ -1,6 +1,7 @@
 package com.example.near.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.near.R
+import com.example.near.SearchResultsActivity
 import com.example.near.models.ProductData
 
 class SearchRakingRecyclerAdapter(val mContext: Context, val mList : ArrayList<ProductData>) : RecyclerView.Adapter<SearchRakingRecyclerAdapter.ItemViewHolder>(){
@@ -16,6 +18,14 @@ class SearchRakingRecyclerAdapter(val mContext: Context, val mList : ArrayList<P
     inner class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val rakingNum = view.findViewById<TextView>(R.id.rakingNumTxt)
         val pop = view.findViewById<TextView>(R.id.popTxt)
+        fun bind(){
+            pop.setOnClickListener {
+                val myIntnet = Intent(mContext, SearchResultsActivity::class.java)
+                myIntnet.putExtra("word", mList[position].name)
+                Log.d("word", mList[position].name)
+                mContext.startActivity(myIntnet)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -27,9 +37,8 @@ class SearchRakingRecyclerAdapter(val mContext: Context, val mList : ArrayList<P
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.rakingNum.text = num++.toString()
-        Log.d("holder.rakingNum.text", holder.rakingNum.text.toString())
         holder.pop.text = mList[position].name
-        Log.d("holder.pop.text",holder.pop.text.toString())
+        holder.bind()
     }
 
     override fun getItemCount(): Int {
