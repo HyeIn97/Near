@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.near.ui.MainActivity
 
 class MyReceiver : BroadcastReceiver() {
@@ -13,13 +14,14 @@ class MyReceiver : BroadcastReceiver() {
             val boolean = true
             val myIntent = Intent(context, MainActivity::class.java)
             myIntent.putExtra("homeBoolean", boolean)
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(myIntent)
         }
         if(CartAction.equals(intent.action)){
             val boolean = true
             val myIntent = Intent(context, MainActivity::class.java)
             myIntent.putExtra("cartBoolean", boolean)
-            Log.d("cartBoolean", boolean.toString())
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             context.startActivity(myIntent)
         }
     }

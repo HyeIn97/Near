@@ -6,6 +6,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.example.near.MyReceiver
 import com.example.near.R
@@ -54,12 +55,16 @@ class SmallCategoryActivity : BaseActivity() {
         homeBtn.setOnClickListener {
             val myIntent = Intent(MyReceiver.MainAction)
             sendBroadcast(myIntent)
-            finish()
+            overridePendingTransition(0, 0)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(0, 0)
         }
         cartBtn.setOnClickListener {
             val myIntent = Intent(MyReceiver.CartAction)
             sendBroadcast(myIntent)
-            finish()
+            overridePendingTransition(0, 0)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(0, 0)
         }
     }
 

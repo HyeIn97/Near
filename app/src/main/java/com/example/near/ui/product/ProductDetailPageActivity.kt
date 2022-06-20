@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.near.MyReceiver
@@ -78,12 +79,16 @@ class ProductDetailPageActivity : BaseActivity() {
         homeBtn.setOnClickListener {
             val myIntent = Intent(MyReceiver.MainAction)
             sendBroadcast(myIntent)
-            finish()
+            overridePendingTransition(0, 0)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(0, 0)
         }
         cartBtn.setOnClickListener {
             val myIntent = Intent(MyReceiver.CartAction)
             sendBroadcast(myIntent)
-            finish()
+            overridePendingTransition(0, 0)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(0, 0)
         }
     }
 
