@@ -1,12 +1,15 @@
 package com.example.near.ui.product
 
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.example.near.MyReceiver
 import com.example.near.ui.purchase.PurchaseActivity
 import com.example.near.R
 import com.example.near.adapters.ProductDetailPageAdapter
@@ -24,20 +27,33 @@ import retrofit2.Response
 
 class ProductDetailPageActivity : BaseActivity() {
     lateinit var binding : ActivityProductDetailPageBinding
-    //lateinit var reviewTapBinding : FragmentProductDetailReviewBinding
     lateinit var mProductDetailPageAdapter : ProductDetailPageAdapter
-//    lateinit var mLeviewPageAdapter : DetailReviewRecyclerAdapter
     lateinit var data : ProductData
     lateinit var mStoreObj : StoreData
     var mReviewsList : ArrayList<ReviewData> = arrayListOf()
+    lateinit var mReceiveer : BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail_page)
         data = intent.getSerializableExtra("data") as ProductData
         Log.d("data________!!!", data.toString())
+        mReceiveer = MyReceiver()
         setUpEvents()
         setValues()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter()
+        filter.addAction(MyReceiver.MainAction)
+        filter.addAction(MyReceiver.CartAction)
+        registerReceiver(mReceiveer, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(mReceiveer)
     }
 
     override fun setUpEvents() {
@@ -58,6 +74,16 @@ class ProductDetailPageActivity : BaseActivity() {
                 }
             }
             orderBottomDialogFragment.show(supportFragmentManager, orderBottomDialogFragment.tag)
+        }
+        homeBtn.setOnClickListener {
+            val myIntent = Intent(MyReceiver.MainAction)
+            sendBroadcast(myIntent)
+            finish()
+        }
+        cartBtn.setOnClickListener {
+            val myIntent = Intent(MyReceiver.CartAction)
+            sendBroadcast(myIntent)
+            finish()
         }
     }
 

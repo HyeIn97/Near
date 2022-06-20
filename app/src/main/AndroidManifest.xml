@@ -13,9 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
             android:name=".SearchResultsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
@@ -41,7 +46,7 @@
             android:name=".ui.product.ProductDetailPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SmallCategoryActivity"
+            android:name=".ui.product.SmallCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.PassWordModifyActivity"

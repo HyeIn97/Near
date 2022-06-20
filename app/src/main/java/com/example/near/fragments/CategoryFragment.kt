@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.near.R
 import com.example.near.adapters.CategoryRecyclerAdapter
 import com.example.near.databinding.FragmentCategoryBinding
-import com.example.near.ui.SmallCategoryActivity
-import com.example.near.databinding.FragmentCategoryTestBinding
 import com.example.near.models.BasicResponse
 import com.example.near.models.LageCategoryData
 import com.example.near.models.SmallCategoryData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Collections.addAll
 
 class CategoryFragment : BaseFragment() {
     lateinit var binding : FragmentCategoryBinding

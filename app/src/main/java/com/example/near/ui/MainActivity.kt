@@ -1,7 +1,9 @@
 package com.example.near.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -31,14 +33,11 @@ import retrofit2.Response
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityMainBinding
     lateinit var mPagerAdapter: MainViewPagerAtapter
-
-//    lateinit var drawerBinding : DrawerLayout
-//    lateinit var drawerNavBinding : NavigationView
-
+    var homeClickBoolean = false
+    var cartClickBoolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         nearIcon.visibility = View.VISIBLE
         searchBtn.visibility = View.VISIBLE
         setUpEvents()
@@ -47,11 +46,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onResume() {
         super.onResume()
+        homeClickBoolean= intent.getBooleanExtra("homeBoolean", false)
+        cartClickBoolean= intent.getBooleanExtra("cartBoolean", false)
+        if(homeClickBoolean){
+            binding.bottomNav.setSelectedItemId(R.id.home)
+            binding.mainViewPager.setCurrentItem(0)
+            homeClickBoolean = false
+        }
+        if(cartClickBoolean){
+            binding.bottomNav.setSelectedItemId(R.id.cart)
+            binding.mainViewPager.setCurrentItem(2)
+            cartClickBoolean = false
+        }
     }
     override fun setUpEvents() {
         settingBtn.setOnClickListener {
             initdrawerSetting()
-            //refreshFragment(this, ft)
         }
         searchBtn.setOnClickListener {
             val myIntnet = Intent(mContext, SearchActivity::class.java)

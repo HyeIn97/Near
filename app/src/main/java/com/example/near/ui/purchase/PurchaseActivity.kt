@@ -62,8 +62,6 @@ class PurchaseActivity : BaseActivity() {
     override fun setValues() {
         titleTxt.text = "결제"
         titleTxt.visibility = View.VISIBLE
-        cartBtn.visibility = View.VISIBLE
-        homeBtn.visibility = View.VISIBLE
     }
 
     fun initAdapter(){

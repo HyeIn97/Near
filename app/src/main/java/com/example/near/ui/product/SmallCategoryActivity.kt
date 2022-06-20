@@ -1,34 +1,34 @@
-package com.example.near.ui
+package com.example.near.ui.product
 
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.example.near.MyReceiver
 import com.example.near.R
 import com.example.near.adapters.SmallCategoryAdapter
 import com.example.near.databinding.ActivitySmallCategoryBinding
-import com.example.near.fragments.BaseFragment
 import com.example.near.fragments.CartFragment
-import com.example.near.fragments.HomeFragment
-import com.example.near.models.BasicResponse
 import com.example.near.models.LageCategoryData
 import com.example.near.models.SmallCategoryData
+import com.example.near.ui.BaseActivity
 import com.google.android.material.tabs.TabLayoutMediator
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SmallCategoryActivity : BaseActivity() {
     lateinit var binding : ActivitySmallCategoryBinding
     lateinit var myIntent : Intent
     lateinit var mSmallCategoryAdapter : SmallCategoryAdapter
+    lateinit var mReceiveer : BroadcastReceiver
     var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_small_category)
         position = intent.getIntExtra("position", 0)
+        mReceiveer = MyReceiver()
         setUpEvents()
         setValues()
     }
@@ -36,6 +36,15 @@ class SmallCategoryActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         binding.tabLayout.getTabAt(position)!!.select()
+        val filter = IntentFilter()
+        filter.addAction(MyReceiver.MainAction)
+        filter.addAction(MyReceiver.CartAction)
+        registerReceiver(mReceiveer, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(mReceiveer)
     }
 
     override fun setUpEvents() {
@@ -43,19 +52,15 @@ class SmallCategoryActivity : BaseActivity() {
             finish()
         }
         homeBtn.setOnClickListener {
+            val myIntent = Intent(MyReceiver.MainAction)
+            sendBroadcast(myIntent)
             finish()
-
-            //여기서 메인을 호출,,?
-            //setFragment("home")
-            Log.d("타긴하는거?", "웅애 소분류")
         }
         cartBtn.setOnClickListener {
-            myIntent = Intent(mContext, CartFragment::class.java)
-            //프래그먼트 이동으로 해야됨
+            val myIntent = Intent(MyReceiver.CartAction)
+            sendBroadcast(myIntent)
+            finish()
         }
-
-
-
     }
 
     override fun setValues() {
