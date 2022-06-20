@@ -31,6 +31,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawerNavMenu"
             android:layout_width="280dp"

@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.near.R
 import com.example.near.adapters.SmallCategoryAdapter
 import com.example.near.databinding.ActivitySmallCategoryBinding
+import com.example.near.fragments.BaseFragment
 import com.example.near.fragments.CartFragment
+import com.example.near.fragments.HomeFragment
 import com.example.near.models.BasicResponse
 import com.example.near.models.LageCategoryData
 import com.example.near.models.SmallCategoryData
@@ -42,6 +44,8 @@ class SmallCategoryActivity : BaseActivity() {
         }
         homeBtn.setOnClickListener {
             finish()
+
+            //여기서 메인을 호출,,?
             //setFragment("home")
             Log.d("타긴하는거?", "웅애 소분류")
         }

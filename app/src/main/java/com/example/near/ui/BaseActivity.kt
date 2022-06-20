@@ -77,16 +77,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    fun setFragment(value : String){
-        val transaction = supportFragmentManager.beginTransaction()
-        when(value){
-            "home" -> {
-                Log.d("타긴하는거?", "웅애 액티비티")
-                transaction.replace(R.id.homeFrameLayout, HomeFragment()).commit()
-            }
-            CARTFRAGMENT -> {
-
-            }
-        }
-    }
+//    fun setFragment(value : String){
+//        val transaction = supportFragmentManager.beginTransaction()
+//        when(value){
+//            "home" -> {
+//                Log.d("타긴하는거?", "웅애 액티비티")
+//                transaction.replace(R.id.homeFrameLayout, HomeFragment()).commit()
+//            }
+//            CARTFRAGMENT -> {
+//
+//            }
+//        }
+//    }
 }
